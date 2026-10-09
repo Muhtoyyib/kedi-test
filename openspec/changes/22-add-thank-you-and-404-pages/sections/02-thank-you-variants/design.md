@@ -1,0 +1,10 @@
+## Variants (exact copy)
+
+| kind       | Title                    | Message                                                                                 | Next steps                                                                                                                                | Primary action                               |
+| ---------- | ------------------------ | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| `contact`  | Message received         | Thank you. We'll reply on WhatsApp, usually within 1 hour during opening hours.         | 1. Save our number {whatsapp.display} so our reply reaches you. 2. We'll answer your question or call if needed.                          | `Button primary` "Browse products" → /shop   |
+| `business` | Thanks for your interest | We'll message you on WhatsApp within one working day to answer your questions.          | 1. Save our number {whatsapp.display}. 2. Join the business session at our next seminar. 3. Decide in your own time. There's no pressure. | `Button sun` "See seminar dates" → /seminars |
+| `referral` | Your link is ready       | Share it with friends and family. You'll both be rewarded after their first paid order. | 1. Share your link on WhatsApp. 2. We'll message you when your reward is due.                                                             | `Button primary` "Back to my link" → /refer  |
+| `seminar`  | You're on the list       | We'll message you on WhatsApp with the seminar details and a reminder.                  | 1. Save our number {whatsapp.display}. 2. Look out for our reminder the day before.                                                       | `Button primary` "Browse products" → /shop   |
+
+Meta titles: "{Title} | {Brand}", `noindex`. (The refer page shows the link inline, so the `referral` variant is used only if a future flow needs it; it's still prerendered.)

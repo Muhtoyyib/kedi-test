@@ -1,0 +1,59 @@
+schema: spec-driven
+
+context: |
+  Project: the public website of an independent KEDI Healthcare distributor in Nigeria
+  ("[Brand Name]", serving "[City]"). It is a static, mobile-first marketing + catalogue
+  site whose job is to turn social-media visitors into WhatsApp orders, weekly seminar
+  registrations and repeat customers. There is NO online checkout and NO user accounts.
+
+  Source documents (read before writing any artifact):
+    - ../KEDI_Digital_Sales_System_Implementation_Plan.md  (business plan, page list)
+    - ../KEDI_Running_Costs_and_Payments.md                 (cost constraints)
+    - docs/architecture.md        (stack, data flow, build/deploy, env vars)
+    - docs/design-system.md       (KEDI-derived palette, type, components)
+    - docs/content-model.md       (Google Sheet tabs, typed content, generated catalog)
+    - docs/routes-and-sitemap.md  (every route and its change)
+    - docs/copy-and-compliance.md (voice, health-claim rules, NDPA consent)
+    - docs/analytics-events.md    (event names and params)
+    - docs/whatsapp-messages.md   (every pre-filled WhatsApp message)
+    - docs/client-inputs.md       (placeholder registry: values the client still owes)
+    - docs/build-order.md         (order to apply changes)
+
+  Stack (mirrors the Rixl landing app): Bun 1.4, Vite+ (`vp`), TanStack Start + TanStack
+  Router with full static prerender, React 19 (compiler on), TypeScript strict, Tailwind
+  CSS 4 tokens, oxlint (+ @shadcn/lint rules) and oxfmt, Vitest + Testing Library,
+  fumadocs-mdx for the legal pages, motion for restrained reveal animation, lucide-react
+  icons. Hosted as static assets on Cloudflare Workers (wrangler, assets-only, free plan).
+  Data comes from a Google Sheet through a Google Apps Script web app: read at build time
+  (catalog, settings, seminars, highlights, videos, stories, and articles written in Google Docs) and written at run time (orders, forms, referrals).
+  Deploys run in GitHub Actions: on push, nightly, and on "Publish website" from the Sheet.
+
+  Audience: Nigerian adults, mostly on Android phones over 3G/4G, arriving from
+  Instagram, Facebook, TikTok and WhatsApp. Many are 35+. Trust, clarity and speed beat
+  novelty. Currency is Naira (₦), phone numbers are Nigerian (+234).
+
+  Hard constraints:
+    - No medical claims: never say a product cures, treats or prevents a disease.
+    - Always present the business as an "Independent KEDI Distributor", never as KEDI.
+    - No income guarantees on the Business Opportunity page.
+    - Consent on every form (NDPA 2023); analytics load only after cookie consent.
+    - Every page must work without JavaScript for reading; ordering needs JS.
+    - Performance budget: LCP < 2.5 s on Moto G Power / Slow 4G; JS < 120 KB gzip per route.
+
+rules:
+  proposal:
+    - State which section folders exist under sections/ and in what order they render.
+    - Name capabilities as <page>/<section> (kebab-case) so specs nest per page.
+    - List the client inputs (from docs/client-inputs.md) the change depends on.
+  specs:
+    - Describe observable behaviour only; copy, layout and components belong in design.md.
+    - Include a mobile (360x640) scenario for anything above the fold.
+    - Include an empty/missing-data scenario for anything fed by the Sheet.
+  design:
+    - Reference tokens and primitives by their names in docs/design-system.md; never raw hex.
+    - Give exact copy (with [placeholders]) so an implementer does not invent marketing text.
+    - Specify mobile first, then md (768px) and lg (1024px) differences.
+  tasks:
+    - Every UI task ends with its Testing Library test task.
+    - Final group is always Verification (lint, typecheck, test, build, manual mobile check).
+    - The page change's tasks.md has one checkbox per section folder.
