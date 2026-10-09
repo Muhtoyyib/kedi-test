@@ -1,30 +1,30 @@
 ## 1. Parsing
 
-- [ ] 1.1 `src/lib/catalog/types.ts` from `docs/content-model.md` §2
-- [ ] 1.2 `scripts/lib/slugify.ts` + tests (accents, symbols, repeated hyphens, numbers)
-- [ ] 1.3 `scripts/lib/parse-catalog.ts`: every field rule, defaulting (seo title/description, sort order 999), paragraph/line splitting, seminar date+time → ISO `+01:00` + tests for each rule and each error message format ("Products row 7 (KD-P007): price_ngn is not a number")
-- [ ] 1.4 Replace the change-00 fixture with a realistic `catalog.fixture.json`: 9 fixture products across 4 categories (one out of stock, one ask-for-price, one with 3 images), 6 delivery areas, full settings, 3 seminars (one past, two future relative to a fixed date used in tests), 2 highlights (one with a clip and comment), 4 videos (YouTube, Shorts, TikTok), 4 stories (written, video, one without photo consent, one featured), 3 articles (one with every block type, including a doctor callout and an inline image) — every name prefixed "Fixture"
-- [ ] 1.5 Parser rules for highlights, videos, stories and articles (types from `docs/content-model.md` §2) + tests
+- [x] 1.1 `src/lib/catalog/types.ts` from `docs/content-model.md` §2
+- [x] 1.2 `scripts/lib/slugify.ts` + tests (accents, symbols, repeated hyphens, numbers)
+- [x] 1.3 `scripts/lib/parse-catalog.ts`: every field rule, defaulting (seo title/description, sort order 999), paragraph/line splitting, seminar date+time → ISO `+01:00` + tests for each rule and each error message format ("Products row 7 (KD-P007): price_ngn is not a number")
+- [x] 1.4 Replace the change-00 fixture with a realistic `catalog.fixture.json`: 9 fixture products across 4 categories (one out of stock, one ask-for-price, one with 3 images), 6 delivery areas, full settings, 3 seminars (one past, two future relative to a fixed date used in tests), 2 highlights (one with a clip and comment), 4 videos (YouTube, Shorts, TikTok), 4 stories (written, video, one without photo consent, one featured), 3 articles (one with every block type, including a doctor callout and an inline image) — every name prefixed "Fixture"
+- [x] 1.5 Parser rules for highlights, videos, stories and articles (types from `docs/content-model.md` §2) + tests
 
 ## 2. Images
 
-- [ ] 2.1 `image-pipeline.ts` with sharp (AVIF q50, WebP q72, widths 320/480/768/1200, never upscale) + test using a small PNG
-- [ ] 2.2 `image-cache.ts` keyed by Drive ID + modifiedTime + tests
-- [ ] 2.3 Fixture mode uses images from `scripts/fixtures/images/` (simple generated packshot PNGs) through the same pipeline
-- [ ] 2.4 `resolve-content.ts` (Drive IDs, doc image refs) + `video-poster.ts` (YouTube thumbnail fallback, TikTok oEmbed, placeholder on failure) + tests with mocked fetch
-- [ ] 2.5 `compliance.ts` with the shared banned-word list + tests (doctor callout allowed; word-boundary matching; case-insensitive)
+- [x] 2.1 `image-pipeline.ts` with sharp (AVIF q50, WebP q72, widths 320/480/768/1200, never upscale) + test using a small PNG
+- [x] 2.2 `image-cache.ts` keyed by Drive ID + modifiedTime + tests
+- [x] 2.3 Fixture mode uses images from `scripts/fixtures/images/` (simple generated packshot PNGs) through the same pipeline
+- [x] 2.4 `resolve-content.ts` (Drive IDs, doc image refs) + `video-poster.ts` (YouTube thumbnail fallback, TikTok oEmbed, placeholder on failure) + tests with mocked fetch
+- [x] 2.5 `compliance.ts` with the shared banned-word list + tests (doctor callout allowed; word-boundary matching; case-insensitive)
 
 ## 3. Fetch script
 
-- [ ] 3.1 `scripts/fetch-catalog.ts` orchestrating fetch → parse → images → write, per the failure policy (design §6)
-- [ ] 3.2 Slug-change warning against the previous `catalog.json`
-- [ ] 3.3 `vite.config.ts` prerender list adds `/products/{slug}`, `/shop/{category}` and `/learn/{slug}` from the catalog
+- [x] 3.1 `scripts/fetch-catalog.ts` orchestrating fetch → parse → images → write, per the failure policy (design §6)
+- [x] 3.2 Slug-change warning against the previous `catalog.json`
+- [x] 3.3 `vite.config.ts` prerender list adds `/products/{slug}`, `/shop/{category}` and `/learn/{slug}` from the catalog
 
 ## 4. Access layer
 
-- [ ] 4.1 `src/lib/catalog/{data,products,categories,settings,seminars,highlights,videos,stories,articles}.ts` per design §1–4
-- [ ] 4.2 Tests: ordering, featured fill rule, related rule, `getNextSeminar` (before, during, after an event; cancelled skipped; WAT boundary), stories featured-first ordering, articles by topic, related articles, topic counts
-- [ ] 4.3 `src/test-utils/fixtures.ts` exporting parsed fixture data for component tests
+- [x] 4.1 `src/lib/catalog/{data,products,categories,settings,seminars,highlights,videos,stories,articles}.ts` per design §1–4
+- [x] 4.2 Tests: ordering, featured fill rule, related rule, `getNextSeminar` (before, during, after an event; cancelled skipped; WAT boundary), stories featured-first ordering, articles by topic, related articles, topic counts
+- [x] 4.3 `src/test-utils/fixtures.ts` exporting parsed fixture data for component tests
 
 ## 5. Verification
 

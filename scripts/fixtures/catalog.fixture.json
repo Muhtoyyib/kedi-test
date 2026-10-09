@@ -1,118 +1,505 @@
 {
   "source": "fixture",
-  "generatedAt": "2026-10-09T00:00:00.000Z",
+  "generatedAt": "2026-10-10T09:00:00.000Z",
   "products": [
     {
       "id": "KD-F001",
-      "slug": "fixture-product-a",
-      "name": "Fixture Product A",
-      "categorySlug": "fixture-digestive",
+      "slug": "fixture-digestive-tea",
+      "name": "Fixture Digestive Tea",
+      "categorySlug": "digestion",
       "priceNgn": 18500,
+      "packSize": "30 teabags",
+      "packDays": 30,
+      "inStock": true,
+      "featured": true,
+      "sortOrder": 1,
+      "shortBenefit": "A gentle herbal blend that supports everyday digestive comfort.",
+      "description": [
+        "Fixture description — a calming herbal tea blended for after meals and everyday digestive comfort.",
+        "Fixture second paragraph — brewed warm, it fits easily into a morning or evening routine."
+      ],
+      "ingredients": ["Fixture senna leaf", "Fixture ginger root", "Fixture fennel seed"],
+      "howToUse": ["Steep one teabag in hot water for 3–5 minutes.", "Drink once daily, preferably after dinner."],
+      "nafdacNo": "F1-0001",
+      "imageIds": ["fix-p1-a", "fix-p1-b", "fix-p1-c"],
+      "relatedIds": ["KD-F002", "KD-F003"],
+      "faqs": [
+        {"question": "Is the Fixture tea okay every day?", "answer": "Fixture answer — one cup a day is the suggested routine."},
+        {"question": "When should I take it?", "answer": "Fixture answer — most people take it after their evening meal."}
+      ],
+      "seo": {"title": "", "description": ""}
+    },
+    {
+      "id": "KD-F002",
+      "slug": "fixture-colon-cleanser",
+      "name": "Fixture Colon Cleanser",
+      "categorySlug": "digestion",
+      "priceNgn": null,
+      "packSize": "100 ml bottle",
+      "packDays": 20,
+      "inStock": true,
+      "featured": false,
+      "sortOrder": 2,
+      "shortBenefit": "Supports a clean, comfortable digestive tract.",
+      "description": ["Fixture description — a liquid herbal formula used in short courses."],
+      "ingredients": ["Fixture aloe extract", "Fixture herbal blend"],
+      "howToUse": ["Take 10 ml twice daily with water."],
+      "nafdacNo": "F1-0002",
+      "imageIds": ["fix-p2"],
+      "relatedIds": ["KD-F001"],
+      "faqs": [],
+      "seo": {"title": "", "description": ""}
+    },
+    {
+      "id": "KD-F003",
+      "slug": "fixture-energy-capsules",
+      "name": "Fixture Energy Capsules",
+      "categorySlug": "energy",
+      "priceNgn": 22000,
       "packSize": "60 capsules",
       "packDays": 30,
       "inStock": true,
       "featured": true,
       "sortOrder": 1,
-      "shortBenefit": "Fixture benefit line for development only.",
-      "description": ["Fixture description paragraph one.", "Fixture description paragraph two."],
-      "ingredients": ["Fixture ingredient 1", "Fixture ingredient 2"],
-      "howToUse": ["Fixture step one.", "Fixture step two."],
-      "nafdacNo": "F1-0000",
-      "images": [],
-      "relatedIds": ["KD-F002"],
+      "shortBenefit": "Supports steady energy through a busy day.",
+      "description": ["Fixture description — capsule formula for daily vitality and focus."],
+      "ingredients": ["Fixture cordyceps", "Fixture ginseng"],
+      "howToUse": ["Take two capsules each morning."],
+      "nafdacNo": "F1-0003",
+      "imageIds": ["fix-p3"],
+      "relatedIds": ["KD-F006"],
       "faqs": [{"question": "Fixture question?", "answer": "Fixture answer."}],
-      "seo": {"title": "Fixture Product A — 60 capsules | Fixture Brand", "description": "Fixture benefit line for development only."}
+      "seo": {"title": "", "description": ""}
     },
     {
-      "id": "KD-F002",
-      "slug": "fixture-product-b",
-      "name": "Fixture Product B",
-      "categorySlug": "fixture-digestive",
-      "priceNgn": null,
-      "packSize": "100 ml",
-      "packDays": 20,
-      "inStock": true,
-      "featured": false,
-      "sortOrder": 2,
-      "shortBenefit": "Fixture benefit line for development only.",
-      "description": ["Fixture description paragraph."],
-      "ingredients": [],
-      "howToUse": ["Fixture step one."],
-      "nafdacNo": null,
-      "images": [],
-      "relatedIds": [],
-      "faqs": [],
-      "seo": {"title": "Fixture Product B — 100 ml | Fixture Brand", "description": "Fixture benefit line for development only."}
-    },
-    {
-      "id": "KD-F003",
-      "slug": "fixture-product-c",
-      "name": "Fixture Product C",
-      "categorySlug": "fixture-immunity",
+      "id": "KD-F004",
+      "slug": "fixture-immune-support",
+      "name": "Fixture Immune Support",
+      "categorySlug": "immunity",
       "priceNgn": 24000,
       "packSize": "30 sachets",
       "packDays": 15,
+      "inStock": true,
+      "featured": true,
+      "sortOrder": 2,
+      "shortBenefit": "Everyday support for your body's natural defences.",
+      "description": ["Fixture description — daily sachets that fit a wellness routine."],
+      "ingredients": ["Fixture mushroom blend"],
+      "howToUse": ["Mix one sachet into warm water morning and evening."],
+      "nafdacNo": "F1-0004",
+      "imageIds": ["fix-p4"],
+      "relatedIds": [],
+      "faqs": [],
+      "seo": {"title": "", "description": ""}
+    },
+    {
+      "id": "KD-F005",
+      "slug": "fixture-heart-support",
+      "name": "Fixture Heart Support",
+      "categorySlug": "heart",
+      "priceNgn": 28000,
+      "packSize": "60 capsules",
+      "packDays": 30,
       "inStock": false,
       "featured": false,
       "sortOrder": 3,
-      "shortBenefit": "Fixture benefit line for development only.",
-      "description": ["Fixture description paragraph."],
-      "ingredients": ["Fixture ingredient 1"],
-      "howToUse": ["Fixture step one."],
-      "nafdacNo": "F1-0001",
-      "images": [],
+      "shortBenefit": "Herbal support for everyday circulation.",
+      "description": ["Fixture description — currently out of stock; ask on WhatsApp to hear when it returns."],
+      "ingredients": ["Fixture salvia root"],
+      "howToUse": ["Take two capsules daily."],
+      "nafdacNo": "F1-0005",
+      "imageIds": ["fix-p5"],
+      "relatedIds": ["KD-F008"],
+      "faqs": [],
+      "seo": {"title": "", "description": ""}
+    },
+    {
+      "id": "KD-F006",
+      "slug": "fixture-vitality-tonic",
+      "name": "Fixture Vitality Tonic",
+      "categorySlug": "energy",
+      "priceNgn": 19500,
+      "packSize": "250 ml",
+      "packDays": 12,
+      "inStock": true,
+      "featured": false,
+      "sortOrder": 4,
+      "shortBenefit": "A daily tonic for active afternoons.",
+      "description": ["Fixture description — a sweet herbal tonic taken with breakfast."],
+      "ingredients": ["Fixture jujube", "Fixture goji"],
+      "howToUse": ["Take 20 ml once daily."],
+      "nafdacNo": null,
+      "imageIds": ["fix-p6"],
       "relatedIds": [],
       "faqs": [],
-      "seo": {"title": "Fixture Product C — 30 sachets | Fixture Brand", "description": "Fixture benefit line for development only."}
+      "seo": {"title": "", "description": ""}
+    },
+    {
+      "id": "KD-F007",
+      "slug": "fixture-breath-easy",
+      "name": "Fixture Breath Easy",
+      "categorySlug": "immunity",
+      "priceNgn": 17000,
+      "packSize": "60 capsules",
+      "packDays": 30,
+      "inStock": true,
+      "featured": false,
+      "sortOrder": 5,
+      "shortBenefit": "Supports clear, easy breathing day to day.",
+      "description": ["Fixture description — herbal capsules for seasonal comfort."],
+      "ingredients": ["Fixture loquat leaf"],
+      "howToUse": ["Take two capsules morning and night."],
+      "nafdacNo": "F1-0007",
+      "imageIds": ["fix-p7"],
+      "relatedIds": ["KD-F004"],
+      "faqs": [],
+      "seo": {"title": "", "description": ""}
+    },
+    {
+      "id": "KD-F008",
+      "slug": "fixture-circulation-formula",
+      "name": "Fixture Circulation Formula",
+      "categorySlug": "heart",
+      "priceNgn": 31000,
+      "packSize": "90 capsules",
+      "packDays": 30,
+      "inStock": true,
+      "featured": false,
+      "sortOrder": 6,
+      "shortBenefit": "Supports healthy circulation for busy schedules.",
+      "description": ["Fixture description — a three-a-day capsule for everyday circulatory support."],
+      "ingredients": ["Fixture hawthorn berry"],
+      "howToUse": ["Take one capsule with each meal."],
+      "nafdacNo": "F1-0008",
+      "imageIds": ["fix-p8"],
+      "relatedIds": ["KD-F009"],
+      "faqs": [{"question": "Fixture question?", "answer": "Fixture answer."}],
+      "seo": {"title": "", "description": ""}
+    },
+    {
+      "id": "KD-F009",
+      "slug": "fixture-herbal-balance",
+      "name": "Fixture Herbal Balance",
+      "categorySlug": "heart",
+      "priceNgn": 21000,
+      "packSize": "45 capsules",
+      "packDays": 15,
+      "inStock": true,
+      "featured": false,
+      "sortOrder": 7,
+      "shortBenefit": "A daily balance formula for overall wellbeing.",
+      "description": ["Fixture description — gentle daily capsules in a two-week pack."],
+      "ingredients": ["Fixture herbal blend"],
+      "howToUse": ["Take three capsules daily with meals."],
+      "nafdacNo": "F1-0009",
+      "imageIds": ["fix-p9"],
+      "relatedIds": [],
+      "faqs": [],
+      "seo": {"title": "", "description": ""}
     }
   ],
   "categories": [
     {
-      "slug": "fixture-digestive",
-      "name": "Fixture Digestive",
-      "description": "Fixture category description for development only.",
+      "slug": "digestion",
+      "name": "Fixture Digestion",
+      "description": "Fixture category — gentle everyday digestive support.",
       "sortOrder": 1,
-      "image": null
+      "imageId": "fix-cat-digestion"
     },
     {
-      "slug": "fixture-immunity",
-      "name": "Fixture Immunity",
-      "description": "Fixture category description for development only.",
+      "slug": "energy",
+      "name": "Fixture Energy & Vitality",
+      "description": "Fixture category — daily vitality for busy weeks.",
       "sortOrder": 2,
-      "image": null
+      "imageId": "fix-cat-energy"
+    },
+    {
+      "slug": "immunity",
+      "name": "Fixture Immune Support",
+      "description": "Fixture category — support for your natural defences.",
+      "sortOrder": 3,
+      "imageId": "fix-cat-immunity"
+    },
+    {
+      "slug": "heart",
+      "name": "Fixture Heart & Circulation",
+      "description": "Fixture category — everyday circulatory support.",
+      "sortOrder": 4,
+      "imageId": "fix-cat-heart"
     }
   ],
   "settings": {
-    "bank": {"name": "Fixture Bank", "accountName": "Fixture Business Ltd", "accountNumber": "0000000000"},
+    "bank": {"name": "Fixture Bank PLC", "accountName": "Fixture Wellness Ventures", "accountNumber": "0123456789"},
     "openingHours": "Mon–Sat, 9:00 AM – 6:00 PM",
-    "pickupAddress": "Fixture address",
-    "deliveryNote": "Fixture delivery note.",
-    "announcement": null,
-    "seminarOfferText": null,
-    "referralRewardText": "Fixture referral reward",
-    "referralFriendRewardText": "Fixture friend reward",
-    "loyaltyText": null,
-    "freeDeliveryThresholdNgn": null
+    "pickupAddress": "Fixture Plaza, 12 Adeola Street, Surulere, Lagos",
+    "deliveryNote": "Fixture note — delivery is confirmed on WhatsApp after ordering.",
+    "announcement": {"text": "Fixture announcement — free delivery week inside Surulere.", "href": null},
+    "seminarOfferText": "Fixture offer — attendees get a product discount on the day.",
+    "referralRewardText": "Fixture reward — a free teabag pack when a friend's first order is delivered.",
+    "referralFriendRewardText": "Fixture friend reward — ₦1,000 off a first order.",
+    "loyaltyText": "Fixture loyalty — every fifth order earns a gift.",
+    "freeDeliveryThresholdNgn": 50000
   },
   "delivery": [
-    {"area": "Fixture Local", "zone": "local", "feeNgn": 2500, "timelineText": "Same day if confirmed before 2 PM"},
-    {"area": "Fixture Pickup", "zone": "pickup", "feeNgn": 0, "timelineText": "Collect during opening hours"}
+    {"area": "Fixture Surulere", "zone": "local", "feeNgn": 2500, "timelineText": "Same day if confirmed before 2 PM", "sortOrder": 1},
+    {"area": "Fixture Ikeja", "zone": "local", "feeNgn": 3000, "timelineText": "Same day or next morning", "sortOrder": 2},
+    {"area": "Fixture Lekki", "zone": "local", "feeNgn": 3500, "timelineText": "Next day", "sortOrder": 3},
+    {"area": "Fixture Ibadan", "zone": "interstate", "feeNgn": 5000, "timelineText": "1–2 working days", "sortOrder": 4},
+    {"area": "Fixture Abuja", "zone": "interstate", "feeNgn": 6500, "timelineText": "2–3 working days", "sortOrder": 5},
+    {"area": "Fixture Plaza pickup", "zone": "pickup", "feeNgn": 0, "timelineText": "Collect during opening hours", "sortOrder": 6}
   ],
   "seminars": [
     {
-      "id": "SEM-FIXTURE-01",
-      "startsAt": "2099-01-10T16:00:00+01:00",
-      "endsAt": "2099-01-10T17:30:00+01:00",
-      "topic": "Fixture seminar topic",
-      "summary": "Fixture seminar summary for development only.",
-      "learnPoints": ["Fixture point one", "Fixture point two", "Fixture point three"],
-      "audience": "Fixture audience",
+      "id": "SEM-PAST",
+      "startsAt": "2026-10-03T16:00:00+01:00",
+      "endsAt": "2026-10-03T17:30:00+01:00",
+      "topic": "Fixture — Everyday Wellness Basics",
+      "summary": "Fixture summary — an intro session on everyday wellness habits.",
+      "learnPoints": ["Fixture point one", "Fixture point two"],
+      "audience": "Everyone",
       "format": "physical",
-      "venue": "Fixture venue",
-      "lumaUrl": "https://lu.ma/fixture",
-      "lumaEventId": "evt-fixture",
+      "venue": "Fixture Hall, Surulere",
+      "lumaUrl": "https://lu.ma/fixture-past",
+      "lumaEventId": "evt-fixture-past",
+      "status": "done",
+      "recordingUrl": "https://www.youtube.com/watch?v=fixture-rec"
+    },
+    {
+      "id": "SEM-NEXT",
+      "startsAt": "2026-10-17T16:00:00+01:00",
+      "endsAt": "2026-10-17T17:30:00+01:00",
+      "topic": "Fixture — Energy Through the Week",
+      "summary": "Fixture summary — practical ways to keep steady energy.",
+      "learnPoints": ["Fixture point one", "Fixture point two", "Fixture point three"],
+      "audience": "Working adults",
+      "format": "physical",
+      "venue": "Fixture Hall, Surulere",
+      "lumaUrl": "https://lu.ma/fixture-next",
+      "lumaEventId": "evt-fixture-next",
       "status": "scheduled",
       "recordingUrl": null
+    },
+    {
+      "id": "SEM-LATER",
+      "startsAt": "2026-10-24T18:00:00+01:00",
+      "endsAt": "2026-10-24T19:00:00+01:00",
+      "topic": "Fixture — Wellness Q&A Online",
+      "summary": "Fixture summary — an open online question hour.",
+      "learnPoints": ["Fixture point one"],
+      "audience": "Everyone",
+      "format": "online",
+      "venue": "Online",
+      "lumaUrl": "https://lu.ma/fixture-later",
+      "lumaEventId": "evt-fixture-later",
+      "status": "scheduled",
+      "recordingUrl": null
+    }
+  ],
+  "highlights": [
+    {
+      "id": "FX-H1",
+      "date": "2026-10-03",
+      "topic": "Everyday Wellness Basics",
+      "seminarId": "SEM-PAST",
+      "photoIds": ["fix-hl-1a", "fix-hl-1b"],
+      "photoAlts": ["Fixture photo — attendees at the seminar", "Fixture photo — Q&A table"],
+      "video": {"provider": "youtube", "id": "fxclip1", "url": "https://www.youtube.com/watch?v=fxclip1"},
+      "comment": {"text": "Fixture comment — the practical tips made it easy to start a routine.", "name": "Tunde A."}
+    },
+    {
+      "id": "FX-H2",
+      "date": "2026-09-19",
+      "topic": "Fixture — Product Demo Evening",
+      "seminarId": null,
+      "photoIds": ["fix-hl-2a"],
+      "photoAlts": ["Fixture photo — product demonstration"],
+      "video": null,
+      "comment": {"text": "Fixture comment — seeing the products up close helped a lot.", "name": "Chinwe E."}
+    }
+  ],
+  "videos": [
+    {
+      "id": "FX-V1",
+      "title": "Fixture — How the weekly seminar works",
+      "topic": "everyday-wellness",
+      "durationText": "2:14",
+      "date": "2026-09-28",
+      "video": {"provider": "youtube", "id": "fxvid1", "url": "https://www.youtube.com/watch?v=fxvid1"}
+    },
+    {
+      "id": "FX-V2",
+      "title": "Fixture — 60-second wellness tip",
+      "topic": "energy",
+      "durationText": "0:58",
+      "date": "2026-10-02",
+      "video": {"provider": "youtube", "id": "fxvid2", "url": "https://www.youtube.com/shorts/fxvid2"}
+    },
+    {
+      "id": "FX-V3",
+      "title": "Fixture — Behind the stall",
+      "topic": "everyday-wellness",
+      "durationText": "0:41",
+      "date": "2026-09-15",
+      "video": {"provider": "tiktok", "id": "fxtt1", "url": "https://www.tiktok.com/@fixture/video/fxtt1"}
+    },
+    {
+      "id": "FX-V4",
+      "title": "Fixture — Pack walkthrough",
+      "topic": "digestion",
+      "durationText": "1:36",
+      "date": "2026-10-06",
+      "video": {"provider": "youtube", "id": "fxvid4", "url": "https://www.youtube.com/watch?v=fxvid4"}
+    }
+  ],
+  "stories": [
+    {
+      "id": "FX-S1",
+      "slug": "fx-s1",
+      "name": "Adaeze O.",
+      "area": "Surulere",
+      "quote": "Fixture quote — the weekly seminar gave me simple habits I could actually keep.",
+      "fullStory": [
+        "Fixture paragraph — Adaeze heard about the seminars from a neighbour and came along one Saturday.",
+        "Fixture paragraph — she liked that the session focused on small, realistic daily habits."
+      ],
+      "photoId": "fix-story-1",
+      "video": null,
+      "kind": "written",
+      "consent": {"date": "2026-09-30", "channel": "whatsapp"},
+      "featured": true,
+      "date": "2026-10-01"
+    },
+    {
+      "id": "FX-S2",
+      "slug": "fx-s2",
+      "name": "Emeka N.",
+      "area": "Ikeja",
+      "quote": "Fixture quote — short video about building a steadier morning routine.",
+      "fullStory": ["Fixture paragraph — Emeka recorded a short video after attending two sessions."],
+      "photoId": null,
+      "video": {"provider": "tiktok", "id": "fxtt2", "url": "https://www.tiktok.com/@fixture/video/fxtt2"},
+      "kind": "video",
+      "consent": {"date": "2026-10-02", "channel": "written"},
+      "featured": false,
+      "date": "2026-10-04"
+    },
+    {
+      "id": "FX-S3",
+      "slug": "fx-s3",
+      "name": "Blessing A.",
+      "area": "Yaba",
+      "quote": "Fixture quote — she preferred to share her experience without a photo.",
+      "fullStory": ["Fixture paragraph — Blessing asked that no photo be used, so her story is text only."],
+      "photoId": null,
+      "video": null,
+      "kind": "written",
+      "consent": {"date": "2026-09-25", "channel": "email"},
+      "featured": false,
+      "date": "2026-09-26"
+    },
+    {
+      "id": "FX-S4",
+      "slug": "fx-s4",
+      "name": "Femi K.",
+      "area": "Lekki",
+      "quote": "Fixture quote — a regular attendee who now brings a friend along.",
+      "fullStory": ["Fixture paragraph — Femi started coming after work and now attends most weeks."],
+      "photoId": null,
+      "video": null,
+      "kind": "written",
+      "consent": {"date": "2026-10-05", "channel": "whatsapp"},
+      "featured": false,
+      "date": "2026-10-06"
+    }
+  ],
+  "articles": [
+    {
+      "id": "FX-A1",
+      "slug": "fixture-everyday-gut-guide",
+      "title": "Fixture Guide — Everyday Habits for a Comfortable Gut",
+      "description": "Fixture article — small daily habits that keep digestion comfortable.",
+      "topic": "digestion",
+      "date": "2026-10-05",
+      "coverImageId": "fix-cover-gut",
+      "coverAlt": "Fixture cover — a calm breakfast table",
+      "relatedCategory": "digestion",
+      "readingMinutes": 4,
+      "toc": [
+        {"id": "why-daily-habits-matter", "text": "Why daily habits matter"},
+        {"id": "a-simple-morning", "text": "A simple morning"}
+      ],
+      "body": [
+        {
+          "type": "p",
+          "inlines": [
+            {"text": "Fixture intro — digestion works best on a steady routine. "},
+            {"text": "Small habits", "bold": true},
+            {"text": " beat big efforts. "},
+            {"text": "See the seminar notes", "href": "https://lu.ma/fixture"},
+            {"text": " for more."}
+          ]
+        },
+        {"type": "h2", "id": "why-daily-habits-matter", "text": "Why daily habits matter"},
+        {"type": "p", "inlines": [{"text": "Fixture paragraph — your gut likes consistency: regular meals, water, movement."}]},
+        {
+          "type": "ul",
+          "items": [[{"text": "Fixture tip — eat at roughly the same times"}], [{"text": "Fixture tip — sip water through the day"}]]
+        },
+        {"type": "h3", "id": "a-note-on-portions", "text": "A note on portions"},
+        {
+          "type": "ol",
+          "items": [[{"text": "Fixture step — start with a smaller plate"}], [{"text": "Fixture step — pause before seconds"}]]
+        },
+        {"type": "image", "ref": {"doc": "fix-doc-gut", "n": 0}, "alt": "Fixture diagram — a balanced plate"},
+        {"type": "video", "video": {"provider": "youtube", "id": "fxvid9", "url": "https://www.youtube.com/watch?v=fxvid9"}},
+        {
+          "type": "doctor-callout",
+          "blocks": [
+            {
+              "type": "p",
+              "inlines": [
+                {
+                  "text": "Fixture callout — if you live with diabetes or another ongoing condition, talk to your doctor before changing routines."
+                }
+              ]
+            }
+          ]
+        },
+        {"type": "h2", "id": "a-simple-morning", "text": "A simple morning"},
+        {"type": "p", "inlines": [{"text": "Fixture outro — pick one habit and keep it for a week."}]}
+      ]
+    },
+    {
+      "id": "FX-A2",
+      "slug": "fixture-steady-energy",
+      "title": "Fixture Guide — Steady Energy, Simple Days",
+      "description": "Fixture article — gentle routines that keep energy steady.",
+      "topic": "energy",
+      "date": "2026-09-27",
+      "coverImageId": "fix-cover-energy",
+      "coverAlt": "Fixture cover — morning light over a desk",
+      "relatedCategory": "energy",
+      "readingMinutes": 3,
+      "toc": [{"id": "start-slow", "text": "Start slow"}],
+      "body": [
+        {"type": "p", "inlines": [{"text": "Fixture intro — energy dips are normal; routines help smooth them."}]},
+        {"type": "h2", "id": "start-slow", "text": "Start slow"},
+        {"type": "ul", "items": [[{"text": "Fixture tip — water before coffee"}], [{"text": "Fixture tip — a short walk after lunch"}]]}
+      ]
+    },
+    {
+      "id": "FX-A3",
+      "slug": "fixture-what-to-expect",
+      "title": "Fixture Guide — What to Expect at the Weekly Seminar",
+      "description": "Fixture article — a friendly walkthrough of a typical session.",
+      "topic": "everyday-wellness",
+      "date": "2026-09-20",
+      "coverImageId": "fix-cover-daily",
+      "coverAlt": "Fixture cover — chairs set for a seminar",
+      "relatedCategory": null,
+      "readingMinutes": 2,
+      "toc": [],
+      "body": [{"type": "p", "inlines": [{"text": "Fixture intro — arrive a few minutes early, grab a seat, and bring your questions."}]}]
     }
   ]
 }

@@ -3,7 +3,7 @@ import {tanstackStart} from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "fumadocs-mdx/vite";
-import {readCatalog} from "./scripts/lib/read-catalog.ts";
+import {catalogPrerenderPaths, readCatalog} from "./scripts/lib/read-catalog.ts";
 
 const catalog = readCatalog();
 if (catalog.source === "fixture") {
@@ -11,11 +11,11 @@ if (catalog.source === "fixture") {
 }
 
 // Every public page must be listed here so the build emits static HTML for it.
-// Each page change appends its static path; change 04 wires the catalog-driven
-// product/category pages from `catalog` (00-setup-project-foundation/design.md §2).
+// Catalog-driven paths (/products/{slug}, /shop/{category}, /learn/{slug}) are
+// added once their route files exist — the page changes land in later changes.
 // "/404" is the rendered not-found page; scripts/write-404.ts moves it to
 // dist/client/404.html for wrangler's `not_found_handling: "404-page"`.
-const staticPaths = ["/", "/404"];
+const staticPaths = ["/", "/404", ...catalogPrerenderPaths(catalog)];
 const pages = staticPaths.map((path) => ({path}));
 
 export default defineConfig({
