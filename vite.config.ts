@@ -91,7 +91,7 @@ export default defineConfig({
         },
       ],
     },
-    ignorePatterns: ["*.html", "docker", "public", "__tests__", "*.test.ts", "*.config.ts", "routeTree.gen.ts"],
+    ignorePatterns: ["*.html", "docker", "public", "__tests__", "*.test.ts", "*.config.ts", "routeTree.gen.ts", "apps-script"],
     options: {
       typeAware: true,
       typeCheck: true,
