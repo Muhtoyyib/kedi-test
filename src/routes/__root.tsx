@@ -1,6 +1,7 @@
 import {createRootRoute, HeadContent, Outlet, Scripts} from "@tanstack/react-router";
 import * as React from "react";
 import appCss from "@/styles/app.css?url";
+import fontUrl from "@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url";
 import {siteConfig} from "@/lib/site-config";
 
 export const Route = createRootRoute({
@@ -18,6 +19,7 @@ export const Route = createRootRoute({
       links: [
         {rel: "icon", type: "image/svg+xml", href: "/favicon.svg"},
         {rel: "manifest", href: "/manifest.webmanifest"},
+        {rel: "preload", as: "font", href: fontUrl, type: "font/woff2", crossOrigin: "anonymous"},
         {rel: "stylesheet", href: appCss},
         ...(canonical ? [{rel: "canonical", href: canonical}] : []),
       ],

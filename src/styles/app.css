@@ -1,2 +1,141 @@
-@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource-variable/plus-jakarta-sans/wght.css";
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Brand — KEDI-derived palette (docs/design-system.md §1) */
+  --color-brand: #317abe;
+  --color-brand-hover: #2a68a3;
+  --color-brand-strong: #245c91;
+  --color-brand-soft: #e8f1fa;
+  --color-brand-muted: #8fc1ee;
+  --color-sun: #f4e028;
+  --color-sun-hover: #e3cf14;
+  --color-sun-soft: #fdf8d6;
+  --color-sun-ink: #7a5c00;
+  --color-ink: #0f2a47;
+  --color-leaf: #6fc73b;
+  --color-leaf-strong: #2f6f14;
+  --color-leaf-soft: #eef7e6;
+  --color-danger: #b42318;
+  --color-danger-soft: #fef3f2;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-hover: #1ebe5a;
+  --color-whatsapp-ink: #0b2e1a;
+  --color-canvas: #ffffff;
+  --color-surface: #f7f9fc;
+  --color-line: #e3e8ef;
+  --color-line-strong: #cbd5e1;
+  --color-text-heading: #0f2a47;
+  --color-text-body: #4a5a6a;
+  --color-text-muted: #5d6b78;
+
+  /* Shape and elevation */
+  --radius-badge: 8px;
+  --radius-field: 12px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+  --shadow-card: 0 1px 2px rgb(15 42 71 / 6%), 0 4px 16px rgb(15 42 71 / 6%);
+  --shadow-overlay: 0 12px 40px rgb(15 42 71 / 18%);
+
+  /* Type scale — mobile sizes; the *-md steps apply from md: */
+  --text-display: 2.25rem;
+  --text-display--line-height: 1.05;
+  --text-display-md: 3.5rem;
+  --text-display-md--line-height: 1.05;
+  --text-h1: 2rem;
+  --text-h1--line-height: 1.1;
+  --text-h1-md: 2.75rem;
+  --text-h1-md--line-height: 1.1;
+  --text-h2: 1.625rem;
+  --text-h2--line-height: 1.15;
+  --text-h2-md: 2.25rem;
+  --text-h2-md--line-height: 1.15;
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.25;
+  --text-h3-md: 1.375rem;
+  --text-h3-md--line-height: 1.25;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.55;
+  --text-lead-md: 1.25rem;
+  --text-lead-md--line-height: 1.55;
+  --text-base--line-height: 1.6;
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.3;
+  --text-price: 1.25rem;
+  --text-price--line-height: 1.1;
+  --text-price-md: 1.5rem;
+  --text-price-md--line-height: 1.1;
+}
+
+@layer base {
+  body {
+    @apply bg-canvas font-sans text-base text-text-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-text-heading;
+  }
+
+  p {
+    max-width: 65ch;
+  }
+
+  ::selection {
+    @apply bg-sun text-ink;
+  }
+
+  :focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--color-brand) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+/* Article typography for MDX pages (Prose component). */
+@layer components {
+  .prose :where(h2) {
+    @apply mt-10 text-h2 font-bold text-balance md:text-h2-md;
+  }
+
+  .prose :where(h3) {
+    @apply mt-8 text-h3 font-bold md:text-h3-md;
+  }
+
+  .prose :where(p) {
+    @apply mt-4;
+  }
+
+  .prose :where(ul) {
+    @apply mt-4 list-disc pl-6;
+  }
+
+  .prose :where(ol) {
+    @apply mt-4 list-decimal pl-6;
+  }
+
+  .prose :where(li) {
+    @apply mt-2;
+  }
+
+  .prose :where(blockquote) {
+    @apply mt-6 rounded-r-field border-l-4 border-sun bg-sun-soft p-4;
+  }
+
+  .prose :where(a) {
+    @apply font-medium text-brand-strong underline underline-offset-4;
+  }
+
+  .prose :where(img) {
+    @apply mt-6 rounded-card;
+  }
+}
