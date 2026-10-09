@@ -1,0 +1,10 @@
+{
+  "name": "[Brand Name]",
+  "short_name": "[Brand Name]",
+  "description": "Your trusted KEDI wellness partner — genuine products, free seminars, personal follow-up.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#317ABE",
+  "background_color": "#FFFFFF",
+  "icons": [{"src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml"}]
+}

@@ -1,0 +1,75 @@
+{
+  "name": "kedi-distributor-site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "assert:prod": "node scripts/assert-production-ready.ts",
+    "build": "vp run generate && vp build && node scripts/write-404.ts && tsc -b",
+    "catalog:fetch": "node scripts/fetch-catalog.ts",
+    "ci:build": "vp run generate && vp run lint && vp test --run && vp run build",
+    "clean": "rm -rf dist",
+    "deploy": "wrangler deploy",
+    "dev": "vp dev --force",
+    "generate": "fumadocs-mdx",
+    "lint": "vp lint --max-warnings=0 --no-error-on-unmatched-pattern",
+    "lint:fix": "vp lint --fix",
+    "format": "vp fmt",
+    "prepare": "vp config",
+    "test": "vp test",
+    "test:ui": "vp test --ui",
+    "test:coverage": "vp test --coverage",
+    "typecheck": "vp run generate && tsc -b --noEmit"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.8.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@tanstack/react-router": "^1.170.38",
+    "@tanstack/react-router-devtools": "^1.167.2",
+    "@tanstack/react-start": "^1.168.57",
+    "@tanstack/start-static-server-functions": "^1.167.37",
+    "cn": "0.3.2",
+    "fumadocs-core": "^16.15.12",
+    "fumadocs-mdx": "^15.4.3",
+    "lucide-react": "^1.47.0",
+    "motion": "^13.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@shadcn/lint": "^0.1.5",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "@tanstack/devtools-vite": "^0.8.5",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/bun": "^1.4.2",
+    "@types/mdx": "^2.0.14",
+    "@types/node": "26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "fast-check": "^4.10.2",
+    "jsdom": "^30.1.0",
+    "oxc-transform-react": "0.151.0",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0",
+    "vite-plus": "1.0.0",
+    "wrangler": "^4.136.1"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "bun",
+      "version": "1.4.2",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "bun@1.4.2"
+}

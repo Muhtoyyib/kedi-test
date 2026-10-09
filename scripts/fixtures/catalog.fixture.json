@@ -1,0 +1,118 @@
+{
+  "source": "fixture",
+  "generatedAt": "2026-10-09T00:00:00.000Z",
+  "products": [
+    {
+      "id": "KD-F001",
+      "slug": "fixture-product-a",
+      "name": "Fixture Product A",
+      "categorySlug": "fixture-digestive",
+      "priceNgn": 18500,
+      "packSize": "60 capsules",
+      "packDays": 30,
+      "inStock": true,
+      "featured": true,
+      "sortOrder": 1,
+      "shortBenefit": "Fixture benefit line for development only.",
+      "description": ["Fixture description paragraph one.", "Fixture description paragraph two."],
+      "ingredients": ["Fixture ingredient 1", "Fixture ingredient 2"],
+      "howToUse": ["Fixture step one.", "Fixture step two."],
+      "nafdacNo": "F1-0000",
+      "images": [],
+      "relatedIds": ["KD-F002"],
+      "faqs": [{"question": "Fixture question?", "answer": "Fixture answer."}],
+      "seo": {"title": "Fixture Product A — 60 capsules | Fixture Brand", "description": "Fixture benefit line for development only."}
+    },
+    {
+      "id": "KD-F002",
+      "slug": "fixture-product-b",
+      "name": "Fixture Product B",
+      "categorySlug": "fixture-digestive",
+      "priceNgn": null,
+      "packSize": "100 ml",
+      "packDays": 20,
+      "inStock": true,
+      "featured": false,
+      "sortOrder": 2,
+      "shortBenefit": "Fixture benefit line for development only.",
+      "description": ["Fixture description paragraph."],
+      "ingredients": [],
+      "howToUse": ["Fixture step one."],
+      "nafdacNo": null,
+      "images": [],
+      "relatedIds": [],
+      "faqs": [],
+      "seo": {"title": "Fixture Product B — 100 ml | Fixture Brand", "description": "Fixture benefit line for development only."}
+    },
+    {
+      "id": "KD-F003",
+      "slug": "fixture-product-c",
+      "name": "Fixture Product C",
+      "categorySlug": "fixture-immunity",
+      "priceNgn": 24000,
+      "packSize": "30 sachets",
+      "packDays": 15,
+      "inStock": false,
+      "featured": false,
+      "sortOrder": 3,
+      "shortBenefit": "Fixture benefit line for development only.",
+      "description": ["Fixture description paragraph."],
+      "ingredients": ["Fixture ingredient 1"],
+      "howToUse": ["Fixture step one."],
+      "nafdacNo": "F1-0001",
+      "images": [],
+      "relatedIds": [],
+      "faqs": [],
+      "seo": {"title": "Fixture Product C — 30 sachets | Fixture Brand", "description": "Fixture benefit line for development only."}
+    }
+  ],
+  "categories": [
+    {
+      "slug": "fixture-digestive",
+      "name": "Fixture Digestive",
+      "description": "Fixture category description for development only.",
+      "sortOrder": 1,
+      "image": null
+    },
+    {
+      "slug": "fixture-immunity",
+      "name": "Fixture Immunity",
+      "description": "Fixture category description for development only.",
+      "sortOrder": 2,
+      "image": null
+    }
+  ],
+  "settings": {
+    "bank": {"name": "Fixture Bank", "accountName": "Fixture Business Ltd", "accountNumber": "0000000000"},
+    "openingHours": "Mon–Sat, 9:00 AM – 6:00 PM",
+    "pickupAddress": "Fixture address",
+    "deliveryNote": "Fixture delivery note.",
+    "announcement": null,
+    "seminarOfferText": null,
+    "referralRewardText": "Fixture referral reward",
+    "referralFriendRewardText": "Fixture friend reward",
+    "loyaltyText": null,
+    "freeDeliveryThresholdNgn": null
+  },
+  "delivery": [
+    {"area": "Fixture Local", "zone": "local", "feeNgn": 2500, "timelineText": "Same day if confirmed before 2 PM"},
+    {"area": "Fixture Pickup", "zone": "pickup", "feeNgn": 0, "timelineText": "Collect during opening hours"}
+  ],
+  "seminars": [
+    {
+      "id": "SEM-FIXTURE-01",
+      "startsAt": "2099-01-10T16:00:00+01:00",
+      "endsAt": "2099-01-10T17:30:00+01:00",
+      "topic": "Fixture seminar topic",
+      "summary": "Fixture seminar summary for development only.",
+      "learnPoints": ["Fixture point one", "Fixture point two", "Fixture point three"],
+      "audience": "Fixture audience",
+      "format": "physical",
+      "venue": "Fixture venue",
+      "lumaUrl": "https://lu.ma/fixture",
+      "lumaEventId": "evt-fixture",
+      "status": "scheduled",
+      "recordingUrl": null
+    }
+  ]
+}

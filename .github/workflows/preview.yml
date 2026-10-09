@@ -1,0 +1,43 @@
+name: preview
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install --frozen-lockfile
+
+      # Preview builds always use the fixture catalog; placeholders allowed.
+      - run: bun run catalog:fetch
+        env:
+          CATALOG_SOURCE: fixture
+
+      - run: bun run ci:build
+        env:
+          VITE_SITE_URL: ${{ vars.VITE_SITE_URL }}
+          VITE_APPS_SCRIPT_URL: ${{ vars.VITE_APPS_SCRIPT_URL }}
+          VITE_GA4_ID: ${{ vars.VITE_GA4_ID }}
+          VITE_META_PIXEL_ID: ${{ vars.VITE_META_PIXEL_ID }}
+          VITE_CLARITY_ID: ${{ vars.VITE_CLARITY_ID }}
+
+      - name: Upload preview version
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: versions upload
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

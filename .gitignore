@@ -1,0 +1,26 @@
+# deps
+/node_modules
+
+# generated content
+.source
+src/generated
+
+# test & build
+/coverage
+/dist
+*.tsbuildinfo
+.tanstack
+.wrangler
+.cache
+
+# media generated at publish time
+/public/media
+
+# misc
+.DS_Store
+.idea/
+*.pem
+
+# env
+.env*
+!.env.example

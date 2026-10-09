@@ -1,0 +1,83 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # 01:00 WAT nightly — keeps seminar dates and stock fresh
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Why this deploy was requested (e.g. the Sheet's Publish button)"
+        required: false
+        default: "manual"
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Restore media cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            public/media
+            .cache/images.json
+          key: media-${{ github.sha }}
+          restore-keys: media-
+
+      - run: bun install --frozen-lockfile
+
+      - name: Fetch live catalog
+        run: bun run catalog:fetch
+        env:
+          CATALOG_SOURCE: live
+          APPS_SCRIPT_URL: ${{ secrets.APPS_SCRIPT_URL }}
+          CATALOG_READ_TOKEN: ${{ secrets.CATALOG_READ_TOKEN }}
+
+      - name: Lint, test and prerender
+        run: bun run ci:build
+        env:
+          VITE_SITE_URL: ${{ vars.VITE_SITE_URL }}
+          VITE_APPS_SCRIPT_URL: ${{ vars.VITE_APPS_SCRIPT_URL }}
+          VITE_GA4_ID: ${{ vars.VITE_GA4_ID }}
+          VITE_META_PIXEL_ID: ${{ vars.VITE_META_PIXEL_ID }}
+          VITE_CLARITY_ID: ${{ vars.VITE_CLARITY_ID }}
+
+      - name: Guard — refuse incomplete production builds
+        run: bun run assert:prod
+        env:
+          VITE_SITE_URL: ${{ vars.VITE_SITE_URL }}
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+
+      - name: Report result to the Publish Log
+        if: always() && steps.checkout.outcome != 'skipped'
+        run: |
+          curl -sS -X POST "${APPS_SCRIPT_URL}?action=publish_result&token=${CATALOG_READ_TOKEN}" \
+            -H "Content-Type: text/plain;charset=utf-8" \
+            -d "{
+              \"status\": \"${{ job.status }}\",
+              \"commit\": \"${{ github.sha }}\",
+              \"reason\": \"${{ github.event.inputs.reason || github.event_name }}\",
+              \"run_url\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"
+            }" || echo "publish_result post failed (non-fatal)"
+        env:
+          APPS_SCRIPT_URL: ${{ secrets.APPS_SCRIPT_URL }}
+          CATALOG_READ_TOKEN: ${{ secrets.CATALOG_READ_TOKEN }}
