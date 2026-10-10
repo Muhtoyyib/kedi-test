@@ -33,9 +33,19 @@ function parseBank(bank: UntrustedRecord): Settings["bank"] {
   return name && accountName && accountNumber ? {name, accountName, accountNumber} : null;
 }
 
+const ANNOUNCEMENT_MAX = 90;
+
+// One line on every page, so the Sheet text is truncated at a word boundary
+// rather than letting it wrap the announcement bar.
 function parseAnnouncement(ann: UntrustedRecord): Settings["announcement"] {
-  const text = str(ann, "text");
-  return text ? {text, href: str(ann, "href") || null} : null;
+  const raw = str(ann, "text");
+  if (!raw) return null;
+  let text = raw;
+  if (raw.length > ANNOUNCEMENT_MAX) {
+    text = raw.slice(0, ANNOUNCEMENT_MAX + 1).replace(/\s+\S*$/, "");
+    console.warn(`catalog: announcement truncated to ${ANNOUNCEMENT_MAX} chars ("${raw.slice(0, 30)}…")`);
+  }
+  return {text, href: str(ann, "href") || null};
 }
 
 export function parseSettings(raw: UntrustedValue): Settings {

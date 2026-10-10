@@ -1,8 +1,8 @@
 ## 1. Build
 
-- [ ] 1.1 `FloatingWhatsApp` button per design; respects `hideFloatingWhatsApp`
-- [ ] 1.2 Help bubble with session rule and 20 s timer (fake timers in tests)
-- [ ] 1.3 Tests: link href and tracking; hidden on pages that opt out; bubble appears after 20 s once per session; closing it persists for the session
+- [x] 1.1 `FloatingWhatsApp` button per design; respects `hideFloatingWhatsApp`
+- [x] 1.2 Help bubble with session rule and 20 s timer (fake timers in tests)
+- [x] 1.3 Tests: link href and tracking; hidden on pages that opt out; bubble appears after 20 s once per session; closing it persists for the session
 
 ## 2. Verify
 

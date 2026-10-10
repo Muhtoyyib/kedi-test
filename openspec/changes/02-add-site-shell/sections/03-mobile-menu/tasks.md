@@ -1,8 +1,8 @@
 ## 1. Build
 
-- [ ] 1.1 `MobileMenu` per design, using `@base-ui/react` Dialog in full-screen mode
-- [ ] 1.2 Close on route change (subscribe to router location)
-- [ ] 1.3 Tests: opens from menu button; focus on close; Esc closes and restores focus; link click closes; WhatsApp and call links correct; hours rendered from settings
+- [x] 1.1 `MobileMenu` per design, using `@base-ui/react` Dialog in full-screen mode
+- [x] 1.2 Close on route change (subscribe to router location)
+- [x] 1.3 Tests: opens from menu button; focus on close; Esc closes and restores focus; link click closes; WhatsApp and call links correct; hours rendered from settings
 
 ## 2. Verify
 

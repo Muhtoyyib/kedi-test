@@ -39,6 +39,15 @@
   --shadow-card: 0 1px 2px rgb(15 42 71 / 6%), 0 4px 16px rgb(15 42 71 / 6%);
   --shadow-overlay: 0 12px 40px rgb(15 42 71 / 18%);
 
+  /* Layering and motion */
+  --z-index-cookie: 45;
+  --animate-fade-in: fade-in 150ms ease-out;
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
   /* Type scale — mobile sizes; the *-md steps apply from md: */
   --text-display: 2.25rem;
   --text-display--line-height: 1.05;
