@@ -15,6 +15,11 @@ export function getProduct(slug: string, cat: Catalog = catalog): Product | unde
   return cat.products.find((p) => p.slug === slug);
 }
 
+/** Products in one category, in storefront order. */
+export function getProductsByCategory(slug: string, cat: Catalog = catalog): Product[] {
+  return getProducts(cat).filter((p) => p.categorySlug === slug);
+}
+
 /**
  * Featured products first (grid order). If fewer than 4 are featured, fill to
  * 4 with in-stock products. Capped at `limit` (home shows up to 4 by default).

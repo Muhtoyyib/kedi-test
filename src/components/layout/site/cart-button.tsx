@@ -1,16 +1,23 @@
 import {ShoppingBag} from "lucide-react";
+import {cartDrawer} from "@/lib/cart/drawer-state";
+import {useCartCount} from "@/lib/cart/use-cart-count";
+import {markShellActivity} from "@/lib/shell-activity";
 import {useHydrated} from "@/lib/use-hydrated";
 
-// Header cart entry. Until change 05 wires the cart store it links to /shop;
-// the count badge only renders after hydration so the prerendered HTML never
-// shows a wrong number.
-export function CartButton({count = 0}: {count?: number}) {
+// Header cart entry — opens the cart drawer. The count badge only renders
+// after hydration so the prerendered HTML never shows a wrong number.
+export function CartButton() {
   const hydrated = useHydrated();
+  const count = useCartCount();
   const label = count === 1 ? "Cart, 1 item" : `Cart, ${count} items`;
   return (
-    <a
-      href="/shop"
+    <button
+      type="button"
       aria-label={label}
+      onClick={() => {
+        markShellActivity();
+        cartDrawer.open();
+      }}
       className="relative flex size-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-surface"
     >
       <ShoppingBag className="size-5" aria-hidden="true" />
@@ -19,6 +26,6 @@ export function CartButton({count = 0}: {count?: number}) {
           {count}
         </span>
       ) : null}
-    </a>
+    </button>
   );
 }

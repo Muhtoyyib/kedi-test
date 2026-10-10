@@ -1,13 +1,18 @@
-import {useState, type ReactNode} from "react";
+import {lazy, Suspense, useState, type ReactNode} from "react";
 import {cn} from "cn";
 import {buttonVariants} from "@/components/ui/button";
 import {ToastProvider} from "@/components/ui/toast";
+import {CartDrawerMount} from "@/features/cart/cart-drawer-mount";
+import {ReturnBanner} from "@/features/cart/return-banner";
 import {AnnouncementBar} from "./announcement-bar";
 import {CookieConsent} from "./cookie-consent";
 import {FloatingWhatsApp} from "./floating-whatsapp";
 import {SiteFooter} from "./footer";
-import {MobileMenu} from "./mobile-menu";
 import {SiteHeader} from "./site-header";
+
+// The menu's dialog code only downloads on first open — keeps Base UI out of
+// the initial bundle.
+const LazyMobileMenu = lazy(() => import("./mobile-menu").then((m) => ({default: m.MobileMenu})));
 
 interface SiteLayoutProps {
   children: ReactNode;
@@ -21,6 +26,11 @@ interface SiteLayoutProps {
 // WhatsApp → cookie bar. The cart drawer mounts here in change 05.
 export function SiteLayout({children, hideFloatingWhatsApp, className}: SiteLayoutProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuMounted, setMenuMounted] = useState(false);
+  const onMenuOpenChange = (open: boolean) => {
+    if (open) setMenuMounted(true);
+    setMenuOpen(open);
+  };
   return (
     <ToastProvider>
       <a
@@ -34,14 +44,21 @@ export function SiteLayout({children, hideFloatingWhatsApp, className}: SiteLayo
       </a>
       <CookieConsent />
       <AnnouncementBar />
-      <SiteHeader menuOpen={menuOpen} onMenuOpenChange={setMenuOpen} />
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <SiteHeader menuOpen={menuOpen} onMenuOpenChange={onMenuOpenChange} />
+      <ReturnBanner />
+      {menuMounted ? (
+        <Suspense fallback={null}>
+          <LazyMobileMenu open={menuOpen} onClose={() => onMenuOpenChange(false)} />
+        </Suspense>
+      ) : null}
       <main id="main" tabIndex={-1} className={className}>
         {children}
       </main>
       <SiteFooter />
       {hideFloatingWhatsApp !== true ? <FloatingWhatsApp hidden={menuOpen} mobileOnlyHidden={hideFloatingWhatsApp === "mobile"} /> : null}
-      <div id="cart-drawer-mount" />
+      <div id="cart-drawer-mount">
+        <CartDrawerMount />
+      </div>
     </ToastProvider>
   );
 }

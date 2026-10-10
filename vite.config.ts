@@ -112,9 +112,31 @@ export default defineConfig({
     "*.{json,md,yaml,yml,css}": "vp fmt --write",
   },
   plugins: lazyPlugins(async () => [
+    // The default `cn` export bundles the full tailwind-merge automaton
+    // (~10 KB gzip). This site doesn't rely on conflict merging — overrides
+    // are written variant-scoped (e.g. `max-md:hidden`) or with exclusive
+    // ternaries — so `cn` resolves to the package's own `cn/lite` concat
+    // build. Semantics of `cn(...)` calls stay identical for non-conflicting
+    // input. Do NOT introduce className overrides that rely on merge
+    // resolution; see .agents/rules/code-style.md.
+    {
+      name: "cn-lite",
+      enforce: "pre" as const,
+      resolveId(id: string) {
+        if (id === "cn") return "\0cn-lite";
+      },
+      load(id: string) {
+        if (id === "\0cn-lite") return 'export {clsx as cn} from "cn/lite";';
+      },
+    },
     mdx(await import("./source.config.ts")),
     tailwindcss(),
     tanstackStart({
+      client: {
+        // src/entry-client.tsx — direct hydrateRoot; skips StartClient's
+        // seroval path which a fully-static site never uses.
+        entry: "entry-client",
+      },
       spa: {
         enabled: true,
         prerender: {
@@ -142,5 +164,8 @@ export default defineConfig({
   },
   server: {
     port: 5180,
+  },
+  build: {
+    sourcemap: !!process.env.SOURCEMAP,
   },
 });

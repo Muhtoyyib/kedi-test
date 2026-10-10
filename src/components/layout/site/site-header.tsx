@@ -13,7 +13,6 @@ import {DesktopNav} from "./desktop-nav";
 interface SiteHeaderProps {
   menuOpen: boolean;
   onMenuOpenChange: (open: boolean) => void;
-  cartCount?: number;
 }
 
 function chatLink() {
@@ -27,7 +26,7 @@ function onChatClick() {
 
 // Sticky 64px header (72px ≥lg): brand lockup, desktop nav, cart, WhatsApp
 // and the mobile-menu trigger.
-export function SiteHeader({menuOpen, onMenuOpenChange, cartCount = 0}: SiteHeaderProps) {
+export function SiteHeader({menuOpen, onMenuOpenChange}: SiteHeaderProps) {
   const {pathname} = useLocation();
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur">
@@ -35,7 +34,7 @@ export function SiteHeader({menuOpen, onMenuOpenChange, cartCount = 0}: SiteHead
         <BrandLockup />
         <DesktopNav pathname={pathname} />
         <div className="flex items-center gap-1">
-          <CartButton count={cartCount} />
+          <CartButton />
           <a
             href={chatLink()}
             aria-label="Chat with us on WhatsApp"
@@ -51,7 +50,7 @@ export function SiteHeader({menuOpen, onMenuOpenChange, cartCount = 0}: SiteHead
             variant="whatsapp"
             size="sm"
             onClick={onChatClick}
-            className="hidden md:inline-flex"
+            className="max-md:hidden"
           >
             Chat on WhatsApp
           </Button>

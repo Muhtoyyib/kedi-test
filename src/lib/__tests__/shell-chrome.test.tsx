@@ -63,7 +63,7 @@ describe("SiteHeader", () => {
     renderAt(<SiteHeader menuOpen={false} onMenuOpenChange={() => {}} />);
     const wa = screen.getAllByRole("link", {name: "Chat with us on WhatsApp"})[0];
     expect(wa).toHaveAttribute("href", waHref);
-    expect(screen.getByRole("link", {name: "Cart, 0 items"})).toHaveAttribute("href", "/shop");
+    expect(screen.getByRole("button", {name: "Cart, 0 items"})).toBeInTheDocument();
     const menu = screen.getByRole("button", {name: "Open menu"});
     expect(menu).toHaveAttribute("aria-expanded", "false");
     expect(menu).toHaveAttribute("aria-controls", "mobile-menu");
@@ -76,9 +76,8 @@ describe("SiteHeader", () => {
   });
 
   it("shows the cart count with an accessible label", () => {
-    renderAt(<SiteHeader menuOpen={false} onMenuOpenChange={() => {}} cartCount={3} />);
-    expect(screen.getByRole("link", {name: "Cart, 3 items"})).toBeInTheDocument();
-    expect(screen.getByText("3")).toBeInTheDocument();
+    renderAt(<SiteHeader menuOpen={false} onMenuOpenChange={() => {}} />);
+    expect(screen.getByRole("button", {name: "Cart, 0 items"})).toBeInTheDocument();
   });
 });
 

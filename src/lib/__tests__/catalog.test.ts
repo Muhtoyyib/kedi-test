@@ -1,8 +1,8 @@
 import {describe, expect, it} from "vitest";
 import {getArticles, getArticle, getRelatedArticles, getTopicsWithCounts} from "../catalog/articles.ts";
-import {getCategories, getCategory, getProductsByCategory} from "../catalog/categories.ts";
+import {getCategories, getCategory} from "../catalog/categories.ts";
 import {getHighlights} from "../catalog/highlights.ts";
-import {getFeaturedProducts, getProduct, getProducts, getRelatedProducts} from "../catalog/products.ts";
+import {getFeaturedProducts, getProduct, getProducts, getProductsByCategory, getRelatedProducts} from "../catalog/products.ts";
 import {getDeliveryAreas, getSettings} from "../catalog/settings.ts";
 import {getNextSeminar, getPastSeminars, getSeminars} from "../catalog/seminars.ts";
 import {getStories, getStory} from "../catalog/stories.ts";

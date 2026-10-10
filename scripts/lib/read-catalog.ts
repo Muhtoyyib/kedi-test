@@ -1,5 +1,6 @@
-import {existsSync, readFileSync} from "node:fs";
+import {existsSync, readFileSync, writeFileSync} from "node:fs";
 import path from "node:path";
+import type {UntrustedValue} from "../../src/lib/untrusted.ts";
 
 // Minimal catalog shape needed to derive prerender paths and mark the data
 // source — src/generated/catalog.json when present, else the fixture.
@@ -11,11 +12,24 @@ export interface CatalogPaths {
 }
 
 const GENERATED = path.resolve(import.meta.dirname, "../../src/generated/catalog.json");
+const SHELL_OUT = path.resolve(import.meta.dirname, "../../src/generated/shell.json");
 const FIXTURE = path.resolve(import.meta.dirname, "../fixtures/catalog.fixture.json");
+
+// shell.json feeds the eager shell bundle; write it when an older fetch left
+// only catalog.json so devs don't need to re-run catalog:fetch.
+function ensureShellJson(parsed: Partial<CatalogPaths> & {settings?: UntrustedValue; delivery?: UntrustedValue}): void {
+  if (!existsSync(GENERATED) || existsSync(SHELL_OUT)) return;
+  const shell = {settings: parsed.settings, categories: parsed.categories, delivery: parsed.delivery};
+  writeFileSync(SHELL_OUT, `${JSON.stringify(shell, null, 2)}\n`, "utf8");
+}
 
 export function readCatalog(): CatalogPaths {
   const file = existsSync(GENERATED) ? GENERATED : FIXTURE;
-  const parsed = JSON.parse(readFileSync(file, "utf8")) as Partial<CatalogPaths>;
+  const parsed = JSON.parse(readFileSync(file, "utf8")) as Partial<CatalogPaths> & {
+    settings?: UntrustedValue;
+    delivery?: UntrustedValue;
+  };
+  ensureShellJson(parsed);
   return {
     source: parsed.source === "live" ? "live" : "fixture",
     products: Array.isArray(parsed.products) ? parsed.products : [],

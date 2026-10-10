@@ -26,7 +26,7 @@ description: Frontend code style rules.
 ## Styling
 
 - Tailwind utilities with tokens from `src/styles/app.css`. No raw colours, no arbitrary values except layout and `tracking-*`/`leading-*` (oxlint shadcn rules).
-- Merge classes with `cn` from the `cn` package.
+- Merge classes with `cn` from the `cn` package. **Bundle note:** `cn` is aliased to `cn/lite` (concat only, no tailwind-merge conflict resolution) in `vite.config.ts` to keep the entry under the JS budget. Write overrides so they don't depend on merge resolution: use variant-scoped utilities (`max-md:hidden` not `hidden md:inline-flex`) or mutually exclusive ternaries (`cond ? "a" : "b"`, not `cond && "a"` after a conflicting base).
 - No inline styles.
 
 ## Product truth

@@ -6,14 +6,15 @@ import {X} from "lucide-react";
 interface DrawerProps {
   open: boolean;
   onClose: () => void;
-  title: string;
+  title: ReactNode;
   children: ReactNode;
   className?: string;
+  closeLabel?: string;
 }
 
 // Bottom sheet below md, right-side panel from md. Focus trap, Esc and
 // overlay close come from Base UI's Dialog.
-export function Drawer({open, onClose, title, children, className}: DrawerProps) {
+export function Drawer({open, onClose, title, children, className, closeLabel = "Close"}: DrawerProps) {
   return (
     <Dialog.Root open={open} onOpenChange={(nextOpen) => (nextOpen ? undefined : onClose())}>
       <Dialog.Portal>
@@ -29,7 +30,7 @@ export function Drawer({open, onClose, title, children, className}: DrawerProps)
           <div className="flex items-center justify-between gap-4 px-5 pt-4 pb-3 md:pt-6">
             <Dialog.Title className="text-h3 font-bold text-text-heading">{title}</Dialog.Title>
             <Dialog.Close
-              aria-label="Close"
+              aria-label={closeLabel}
               className="flex size-11 shrink-0 items-center justify-center rounded-full text-text-muted transition-colors hover:bg-surface hover:text-ink"
             >
               <X className="size-5" aria-hidden="true" />

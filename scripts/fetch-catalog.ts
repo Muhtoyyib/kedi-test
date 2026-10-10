@@ -29,6 +29,7 @@ import {collectImages, resolveCatalogImages} from "./lib/resolve-content.ts";
 const root = path.resolve(import.meta.dirname, "..");
 const GENERATED = path.join(root, "src/generated");
 const CATALOG_OUT = path.join(GENERATED, "catalog.json");
+const SHELL_OUT = path.join(GENERATED, "shell.json");
 const IMAGES_OUT = path.join(GENERATED, "images.json");
 const FIXTURE = path.join(root, "scripts/fixtures/catalog.fixture.json");
 const FIXTURE_IMAGES = path.join(root, "scripts/fixtures/images");
@@ -119,6 +120,10 @@ async function loadInputs(): Promise<Inputs | null> {
 async function writeOutputs(catalog: Catalog): Promise<void> {
   mkdirSync(GENERATED, {recursive: true});
   await writeFile(CATALOG_OUT, `${JSON.stringify(catalog, null, 2)}\n`, "utf8");
+  // The eager shell (header/footer/announcement) only needs this slim slice —
+  // keeping it out of catalog.json's heavy payload trims the entry bundle.
+  const shell = {settings: catalog.settings, categories: catalog.categories, delivery: catalog.delivery};
+  await writeFile(SHELL_OUT, `${JSON.stringify(shell, null, 2)}\n`, "utf8");
   await writeFile(IMAGES_OUT, `${JSON.stringify(collectImages(catalog), null, 2)}\n`, "utf8");
 }
 
