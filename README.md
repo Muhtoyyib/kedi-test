@@ -24,3 +24,9 @@ Required in **Settings → Secrets and variables → Actions** before CI deploys
 | `VITE_SITE_URL`                                          | canonical links, sitemap, production guard |
 | `VITE_APPS_SCRIPT_URL`                                   | order/form endpoint inlined at build       |
 | `VITE_GA4_ID` · `VITE_META_PIXEL_ID` · `VITE_CLARITY_ID` | analytics (optional; empty = disabled)     |
+
+## Search Console (after go-live)
+
+1. In [Google Search Console](https://search.google.com/search-console) add the production domain as a **Domain** property.
+2. Copy the `TXT` record it shows into the domain's DNS at the registrar (Cloudflare DNS → DNS → Records → Add record, type `TXT`, name `@`). Wait for it to propagate, then click **Verify**.
+3. In the property, open **Indexing → Sitemaps**, enter `sitemap.xml` and submit. The file is generated at `/sitemap.xml` on every deploy.

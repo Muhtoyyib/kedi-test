@@ -10,7 +10,7 @@ export const siteConfig = {
   city: "[City]",
   state: "[State]",
   serviceAreas: ["[Area 1]", "[Area 2]", "[Area 3]"],
-  url: import.meta.env.VITE_SITE_URL,
+  url: import.meta.env?.VITE_SITE_URL,
   whatsapp: {number: "[2348000000000]", display: "[+234 800 000 0000]"},
   phone: {number: "[+2348000000000]", display: "[0800 000 0000]"},
   email: "hello@[domain]",

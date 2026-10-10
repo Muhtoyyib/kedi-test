@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {cn} from "cn";
 import {Play} from "lucide-react";
+import type {VideoLocation} from "@/lib/analytics/events";
 import {track} from "@/lib/analytics/track";
 
 interface VideoEmbedProps {
@@ -8,7 +9,7 @@ interface VideoEmbedProps {
   id: string;
   title: string;
   poster?: string;
-  location: string;
+  location: VideoLocation;
   className?: string;
 }
 

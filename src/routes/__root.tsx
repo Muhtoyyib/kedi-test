@@ -2,6 +2,8 @@ import {createRootRoute, HeadContent, Outlet, Scripts} from "@tanstack/react-rou
 import * as React from "react";
 import appCss from "@/styles/app.css?url";
 import fontUrl from "@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url";
+import {AnalyticsBridge} from "@/components/analytics-bridge";
+import {jsonLdScripts, localBusinessLd, organizationLd, webSiteLd} from "@/lib/seo/jsonld";
 import {siteConfig} from "@/lib/site-config";
 
 export const Route = createRootRoute({
@@ -23,6 +25,7 @@ export const Route = createRootRoute({
         {rel: "stylesheet", href: appCss},
         ...(canonical ? [{rel: "canonical", href: canonical}] : []),
       ],
+      scripts: jsonLdScripts([organizationLd(), localBusinessLd(), webSiteLd()]),
     };
   },
   component: RootComponent,
@@ -32,6 +35,7 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
+      <AnalyticsBridge />
     </RootDocument>
   );
 }

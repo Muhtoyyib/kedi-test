@@ -209,7 +209,7 @@ function InteractiveSection() {
           <DrawerDemo />
           <ToastDemo />
         </div>
-        <VideoEmbed provider="youtube" id="dQw4w9WgXcQ" title="Fixture seminar clip" location="styleguide" />
+        <VideoEmbed provider="youtube" id="dQw4w9WgXcQ" title="Fixture seminar clip" location="seminar_highlights" />
       </div>
     </SiteSection>
   );

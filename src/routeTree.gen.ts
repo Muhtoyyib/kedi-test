@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from "./routes/__root"
 import { Route as IndexRouteImport } from "./routes/index"
 import { Route as R404RouteImport } from "./routes/404"
+import { Route as RobotsDottxtRouteImport } from "./routes/robots[.]txt"
+import { Route as SitemapDotxmlRouteImport } from "./routes/sitemap[.]xml"
 import { Route as StyleguideRouteImport } from "./routes/styleguide"
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +25,16 @@ const R404Route = R404RouteImport.update({
   path: "/404",
   getParentRoute: () => rootRouteImport,
 } as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: "/robots.txt",
+  path: "/robots.txt",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: "/sitemap.xml",
+  path: "/sitemap.xml",
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StyleguideRoute = StyleguideRouteImport.update({
   id: "/styleguide",
   path: "/styleguide",
@@ -32,30 +44,38 @@ const StyleguideRoute = StyleguideRouteImport.update({
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
   "/404": typeof R404Route
+  "/robots.txt": typeof RobotsDottxtRoute
+  "/sitemap.xml": typeof SitemapDotxmlRoute
   "/styleguide": typeof StyleguideRoute
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
   "/404": typeof R404Route
+  "/robots.txt": typeof RobotsDottxtRoute
+  "/sitemap.xml": typeof SitemapDotxmlRoute
   "/styleguide": typeof StyleguideRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   "/": typeof IndexRoute
   "/404": typeof R404Route
+  "/robots.txt": typeof RobotsDottxtRoute
+  "/sitemap.xml": typeof SitemapDotxmlRoute
   "/styleguide": typeof StyleguideRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: "/" | "/404" | "/styleguide"
+  fullPaths: "/" | "/404" | "/robots.txt" | "/sitemap.xml" | "/styleguide"
   fileRoutesByTo: FileRoutesByTo
-  to: "/" | "/404" | "/styleguide"
-  id: "__root__" | "/" | "/404" | "/styleguide"
+  to: "/" | "/404" | "/robots.txt" | "/sitemap.xml" | "/styleguide"
+  id: "__root__" | "/" | "/404" | "/robots.txt" | "/sitemap.xml" | "/styleguide"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StyleguideRoute: typeof StyleguideRoute
 }
 
@@ -75,6 +95,20 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof R404RouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/robots.txt": {
+      id: "/robots.txt"
+      path: "/robots.txt"
+      fullPath: "/robots.txt"
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/sitemap.xml": {
+      id: "/sitemap.xml"
+      path: "/sitemap.xml"
+      fullPath: "/sitemap.xml"
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     "/styleguide": {
       id: "/styleguide"
       path: "/styleguide"
@@ -88,6 +122,8 @@ declare module "@tanstack/react-router" {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   StyleguideRoute: StyleguideRoute,
 }
 export const routeTree = rootRouteImport
