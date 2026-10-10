@@ -21,5 +21,5 @@
 
 ## 5. Verification
 
-- [ ] 5.1 `vp run generate && vp test --run && vp run build` pass
+- [x] 5.1 `vp run generate && vp test --run && vp run build` pass
 - [ ] 5.2 Set one starter article to Ready = Yes in the test Sheet → Publish → the article renders correctly at 360px and 1280px

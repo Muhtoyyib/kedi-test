@@ -8,7 +8,7 @@
     "assert:prod": "node scripts/assert-production-ready.ts",
     "build": "vp run generate && vp build && node scripts/write-404.ts && tsc -b",
     "catalog:fetch": "node scripts/fetch-catalog.ts",
-    "ci:build": "vp run generate && vp run lint && vp test --run && vp run build",
+    "ci:build": "vp run generate && vp run lint && node scripts/lint-content.ts && vp test --run && vp run build",
     "clean": "rm -rf dist",
     "deploy": "wrangler deploy",
     "dev": "vp dev --force",
@@ -59,7 +59,8 @@
     "typescript": "^7.0.2",
     "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0",
     "vite-plus": "1.0.0",
-    "wrangler": "^4.136.1"
+    "wrangler": "^4.136.1",
+    "zod": "4.6.5"
   },
   "overrides": {
     "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0"
