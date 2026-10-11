@@ -148,3 +148,11 @@
     @apply mt-6 rounded-card;
   }
 }
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

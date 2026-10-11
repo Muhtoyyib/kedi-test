@@ -14,6 +14,8 @@ import { Route as R404RouteImport } from "./routes/404"
 import { Route as RobotsDottxtRouteImport } from "./routes/robots[.]txt"
 import { Route as SitemapDotxmlRouteImport } from "./routes/sitemap[.]xml"
 import { Route as StyleguideRouteImport } from "./routes/styleguide"
+import { Route as ShopIndexRouteImport } from "./routes/shop.index"
+import { Route as ShopCategoryRouteImport } from "./routes/shop.$category"
 
 const IndexRoute = IndexRouteImport.update({
   id: "/",
@@ -40,6 +42,16 @@ const StyleguideRoute = StyleguideRouteImport.update({
   path: "/styleguide",
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopIndexRoute = ShopIndexRouteImport.update({
+  id: "/shop/",
+  path: "/shop/",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopCategoryRoute = ShopCategoryRouteImport.update({
+  id: "/shop/$category",
+  path: "/shop/$category",
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
@@ -47,6 +59,8 @@ export interface FileRoutesByFullPath {
   "/robots.txt": typeof RobotsDottxtRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
   "/styleguide": typeof StyleguideRoute
+  "/shop/$category": typeof ShopCategoryRoute
+  "/shop/": typeof ShopIndexRoute
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
@@ -54,6 +68,8 @@ export interface FileRoutesByTo {
   "/robots.txt": typeof RobotsDottxtRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
   "/styleguide": typeof StyleguideRoute
+  "/shop/$category": typeof ShopCategoryRoute
+  "/shop": typeof ShopIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +78,37 @@ export interface FileRoutesById {
   "/robots.txt": typeof RobotsDottxtRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
   "/styleguide": typeof StyleguideRoute
+  "/shop/$category": typeof ShopCategoryRoute
+  "/shop/": typeof ShopIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: "/" | "/404" | "/robots.txt" | "/sitemap.xml" | "/styleguide"
+  fullPaths:
+    | "/"
+    | "/404"
+    | "/robots.txt"
+    | "/sitemap.xml"
+    | "/styleguide"
+    | "/shop/$category"
+    | "/shop/"
   fileRoutesByTo: FileRoutesByTo
-  to: "/" | "/404" | "/robots.txt" | "/sitemap.xml" | "/styleguide"
-  id: "__root__" | "/" | "/404" | "/robots.txt" | "/sitemap.xml" | "/styleguide"
+  to:
+    | "/"
+    | "/404"
+    | "/robots.txt"
+    | "/sitemap.xml"
+    | "/styleguide"
+    | "/shop/$category"
+    | "/shop"
+  id:
+    | "__root__"
+    | "/"
+    | "/404"
+    | "/robots.txt"
+    | "/sitemap.xml"
+    | "/styleguide"
+    | "/shop/$category"
+    | "/shop/"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +117,8 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StyleguideRoute: typeof StyleguideRoute
+  ShopCategoryRoute: typeof ShopCategoryRoute
+  ShopIndexRoute: typeof ShopIndexRoute
 }
 
 declare module "@tanstack/react-router" {
@@ -116,6 +158,20 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof StyleguideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/shop/": {
+      id: "/shop/"
+      path: "/shop"
+      fullPath: "/shop/"
+      preLoaderRoute: typeof ShopIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/shop/$category": {
+      id: "/shop/$category"
+      path: "/shop/$category"
+      fullPath: "/shop/$category"
+      preLoaderRoute: typeof ShopCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +181,8 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StyleguideRoute: StyleguideRoute,
+  ShopCategoryRoute: ShopCategoryRoute,
+  ShopIndexRoute: ShopIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

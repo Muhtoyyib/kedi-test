@@ -3,10 +3,34 @@ import {cn} from "cn";
 
 interface Step {
   title: string;
-  description: ReactNode;
+  description?: ReactNode;
 }
 
-export function StepList({steps, className}: {steps: Step[]; className?: string}) {
+interface StepListProps {
+  steps: Step[];
+  /** "compact" — small sun numbers, title only, horizontal on md+ (shop strip). */
+  variant?: "default" | "compact";
+  className?: string;
+}
+
+export function StepList({steps, variant = "default", className}: StepListProps) {
+  if (variant === "compact") {
+    return (
+      <ol className={cn("flex flex-col gap-3 md:flex-row md:gap-8", className)}>
+        {steps.map((step, index) => (
+          <li key={step.title} className="flex items-center gap-3">
+            <span
+              className="flex size-7 shrink-0 items-center justify-center rounded-full bg-sun text-sm font-bold text-ink"
+              aria-hidden="true"
+            >
+              {index + 1}
+            </span>
+            <span className="text-sm font-semibold text-text-heading">{step.title}</span>
+          </li>
+        ))}
+      </ol>
+    );
+  }
   return (
     <ol className={cn("flex flex-col gap-6", className)}>
       {steps.map((step, index) => (

@@ -1,3 +1,5 @@
+import {existsSync} from "node:fs";
+import {resolve} from "node:path";
 import {defineConfig, lazyPlugins} from "vite-plus";
 import {tanstackStart} from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
@@ -15,7 +17,16 @@ if (catalog.source === "fixture") {
 // added once their route files exist — the page changes land in later changes.
 // "/404" is the rendered not-found page; scripts/write-404.ts moves it to
 // dist/client/404.html for wrangler's `not_found_handling: "404-page"`.
-const staticPaths = ["/", "/404", "/sitemap.xml", "/robots.txt", ...catalogPrerenderPaths(catalog)];
+const pageRoutes = ["shop.index"].filter((name) => existsSync(resolve(import.meta.dirname, `src/routes/${name}.tsx`)));
+
+const staticPaths = [
+  "/",
+  "/404",
+  "/sitemap.xml",
+  "/robots.txt",
+  ...pageRoutes.map((name) => `/${name.replace(".index", "")}`),
+  ...catalogPrerenderPaths(catalog),
+];
 const pages = staticPaths.map((path) => ({path}));
 
 export default defineConfig({

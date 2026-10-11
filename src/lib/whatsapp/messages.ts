@@ -18,6 +18,10 @@ export function outOfStockMessage(product: Pick<Product, "name" | "packSize">): 
   return `Hello ${siteConfig.name}! ${product.name} (${product.packSize}) shows out of stock. When will it be available?`;
 }
 
+export function searchEnquiry(term: string): string {
+  return `Hello ${siteConfig.name}! I searched your website for "${term}" but couldn't find it. Do you have it?`;
+}
+
 export interface OrderMessageInput {
   orderId: string;
   lines: PricedLine[];

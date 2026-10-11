@@ -109,6 +109,19 @@ export function breadcrumbLd(items: BreadcrumbItem[]): JsonLd {
   };
 }
 
+/** ItemList of product URLs for shop/category listings. */
+export function itemListLd(paths: string[]): JsonLd {
+  return {
+    "@context": ORG_TYPE,
+    "@type": "ItemList",
+    itemListElement: paths.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      ...(absoluteUrl(p) ? {url: absoluteUrl(p)} : {name: p}),
+    })),
+  };
+}
+
 /** TanStack head() script entries — one script per entity. */
 export function jsonLdScripts(entities: JsonLd[]): {type: string; children: string}[] {
   return entities.map((e) => ({type: "application/ld+json", children: JSON.stringify(e)}));

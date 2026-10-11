@@ -13,6 +13,8 @@ import {Textarea} from "@/components/ui/textarea";
 import {ToastProvider} from "@/components/ui/toast";
 import {VideoEmbed} from "@/components/ui/video-embed";
 import {SectionHeader} from "@/components/marketing/section-header";
+import {ProductCard} from "@/components/marketing/product-card";
+import {getProducts} from "@/lib/catalog/products";
 import {SiteSection} from "@/components/marketing/site-section";
 import {SunArc} from "@/components/marketing/sun-arc";
 import {ChipDemo, DrawerDemo, ToastDemo} from "./demos";
@@ -74,6 +76,7 @@ export function StyleguidePage() {
       <ButtonsSection />
       <FieldsSection />
       <BadgesSection />
+      <ProductCardsSection />
       <InteractiveSection />
       <DisclaimersSection />
     </ToastProvider>
@@ -188,6 +191,27 @@ function BadgesSection() {
           Something needs your attention.
         </Notice>
       </div>
+    </SiteSection>
+  );
+}
+
+// Priced, ask-price and out-of-stock states side by side (fixture catalog).
+function ProductCardsSection() {
+  const states = [
+    getProducts().find((p) => p.inStock && p.priceNgn !== null),
+    getProducts().find((p) => p.priceNgn === null),
+    getProducts().find((p) => !p.inStock),
+  ].filter((p) => p !== undefined);
+  return (
+    <SiteSection spacing="tight">
+      <SectionHeader title="Product cards" />
+      <ul className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6">
+        {states.map((p) => (
+          <li key={p.id} className="contents">
+            <ProductCard product={p} />
+          </li>
+        ))}
+      </ul>
     </SiteSection>
   );
 }
