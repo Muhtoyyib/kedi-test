@@ -22,6 +22,10 @@ export function seminarQuestionMessage(): string {
   return `Hello ${siteConfig.name}! I have a question about the free wellness seminar.`;
 }
 
+export function storySubmissionMessage(): string {
+  return `Hello ${siteConfig.name}! I'd like to share my experience with your service.`;
+}
+
 export function searchEnquiry(term: string): string {
   return `Hello ${siteConfig.name}! I searched your website for "${term}" but couldn't find it. Do you have it?`;
 }

@@ -14,6 +14,7 @@ import { Route as R404RouteImport } from "./routes/404"
 import { Route as RobotsDottxtRouteImport } from "./routes/robots[.]txt"
 import { Route as SeminarsRouteImport } from "./routes/seminars"
 import { Route as SitemapDotxmlRouteImport } from "./routes/sitemap[.]xml"
+import { Route as StoriesRouteImport } from "./routes/stories"
 import { Route as StyleguideRouteImport } from "./routes/styleguide"
 import { Route as LearnIndexRouteImport } from "./routes/learn.index"
 import { Route as LearnSlugRouteImport } from "./routes/learn.$slug"
@@ -44,6 +45,11 @@ const SeminarsRoute = SeminarsRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: "/sitemap.xml",
   path: "/sitemap.xml",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoriesRoute = StoriesRouteImport.update({
+  id: "/stories",
+  path: "/stories",
   getParentRoute: () => rootRouteImport,
 } as any)
 const StyleguideRoute = StyleguideRouteImport.update({
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
+  "/stories": typeof StoriesRoute
   "/styleguide": typeof StyleguideRoute
   "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
+  "/stories": typeof StoriesRoute
   "/styleguide": typeof StyleguideRoute
   "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
+  "/stories": typeof StoriesRoute
   "/styleguide": typeof StyleguideRoute
   "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
+    | "/stories"
     | "/styleguide"
     | "/learn/$slug"
     | "/products/$slug"
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
+    | "/stories"
     | "/styleguide"
     | "/learn/$slug"
     | "/products/$slug"
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
+    | "/stories"
     | "/styleguide"
     | "/learn/$slug"
     | "/products/$slug"
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SeminarsRoute: typeof SeminarsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StoriesRoute: typeof StoriesRoute
   StyleguideRoute: typeof StyleguideRoute
   LearnSlugRoute: typeof LearnSlugRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
@@ -208,6 +221,13 @@ declare module "@tanstack/react-router" {
       path: "/sitemap.xml"
       fullPath: "/sitemap.xml"
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/stories": {
+      id: "/stories"
+      path: "/stories"
+      fullPath: "/stories"
+      preLoaderRoute: typeof StoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     "/styleguide": {
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SeminarsRoute: SeminarsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StoriesRoute: StoriesRoute,
   StyleguideRoute: StyleguideRoute,
   LearnSlugRoute: LearnSlugRoute,
   ProductsSlugRoute: ProductsSlugRoute,
