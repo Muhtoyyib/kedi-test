@@ -3,7 +3,7 @@
 // ownership; KEDI appears only as the product *brand*.
 
 import {getSettings} from "../catalog/settings";
-import type {GeneratedImage, Product} from "../catalog/types";
+import type {GeneratedImage, Product, Seminar} from "../catalog/types";
 import {siteConfig} from "../site-config";
 import {absoluteUrl} from "./meta";
 
@@ -146,6 +146,26 @@ export function productLd(product: Product, categoryName: string): JsonLd {
           },
         }
       : {}),
+  };
+}
+
+/** Event schema for a scheduled seminar (seminars/page spec). Free offer,
+ *  WAT times as authored, Place vs VirtualLocation by format. */
+export function seminarEventLd(s: Seminar): JsonLd {
+  const online = s.format === "online";
+  return {
+    "@context": ORG_TYPE,
+    "@type": "Event",
+    name: s.topic,
+    description: s.summary,
+    startDate: s.startsAt,
+    endDate: s.endsAt,
+    eventStatus: `https://schema.org/${s.status === "cancelled" ? "EventCancelled" : "EventScheduled"}`,
+    eventAttendanceMode: `https://schema.org/${online ? "Online" : "Offline"}EventAttendanceMode`,
+    location: online ? {"@type": "VirtualLocation", url: s.lumaUrl} : {"@type": "Place", name: s.venue, address: s.venue},
+    organizer: {"@type": "Organization", name: siteConfig.name, ...(siteConfig.url ? {url: siteConfig.url} : {})},
+    offers: {"@type": "Offer", price: 0, priceCurrency: "NGN", availability: "https://schema.org/InStock", url: s.lumaUrl},
+    isAccessibleForFree: true,
   };
 }
 

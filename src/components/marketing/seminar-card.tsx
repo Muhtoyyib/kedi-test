@@ -75,8 +75,8 @@ export function SeminarCard({seminar, variant, registerHref, location, now = new
             {formatSeminarDate(seminar.startsAt)} · <MetaLine seminar={seminar} />
           </p>
         </div>
-        <Button variant="primary" href={registerHref} onClick={onRegister} className="max-md:hidden">
-          Register free
+        <Button variant="secondary" size="sm" href={registerHref} target="_blank" rel="noopener" onClick={onRegister} className="shrink-0">
+          Register
         </Button>
       </article>
     );
