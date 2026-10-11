@@ -1,8 +1,8 @@
 ## 1. Build
 
-- [ ] 1.1 `hero-seminar-label.ts` + tests (within 7 days, later, none, exactly 7×24 h boundary)
-- [ ] 1.2 `Hero` component per design (responsive grid, underline accent, SunArc, priority image)
-- [ ] 1.3 Tests: H1 text with city; Shop link → /shop; seminar label variants; WhatsApp link href and tracking; area line joins areas correctly (1, 2, 3 areas)
+- [x] 1.1 `hero-seminar-label.ts` + tests (within 7 days, later, none, exactly 7×24 h boundary)
+- [x] 1.2 `Hero` component per design (responsive grid, underline accent, SunArc, priority image)
+- [x] 1.3 Tests: H1 text with city; Shop link → /shop; seminar label variants; WhatsApp link href and tracking; area line joins areas correctly (1, 2, 3 areas)
 
 ## 2. Verify
 

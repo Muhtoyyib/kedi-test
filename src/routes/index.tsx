@@ -1,19 +1,26 @@
 import {createFileRoute} from "@tanstack/react-router";
 import {SiteLayout} from "@/components/layout/site/layout";
-import {getPageTitle, siteConfig, whatsappUrl} from "@/lib/site-config";
+import {HomeView} from "@/features/home/view";
+import {buildMeta} from "@/lib/seo/meta";
+import {siteConfig} from "@/lib/site-config";
 
-// Holding page until 10-add-home-page lands.
-export const Route = createFileRoute("/")({
-  head: () => ({meta: [{title: getPageTitle()}]}),
-  component: HoldingPage,
-});
-
-function HoldingPage() {
-  return (
-    <SiteLayout className="px-4 py-16">
-      <h1>{siteConfig.name}</h1>
-      <p>Our new website is on the way. Chat with us on WhatsApp to order.</p>
-      <a href={whatsappUrl()}>Chat on WhatsApp</a>
-    </SiteLayout>
-  );
+// ≤ 60 chars: if the full title doesn't fit, drop "trusted" (page design).
+function homeTitle(): string {
+  const full = `${siteConfig.name} — Your trusted KEDI wellness partner in ${siteConfig.city}`;
+  return full.length <= 60 ? full : `${siteConfig.name} — Your KEDI wellness partner in ${siteConfig.city}`;
 }
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    ...buildMeta({
+      title: homeTitle(),
+      description: `Genuine KEDI products in ${siteConfig.city} with free weekly wellness seminars, personal guidance and follow-up. Order easily on WhatsApp.`,
+      path: "/",
+    }),
+  }),
+  component: () => (
+    <SiteLayout>
+      <HomeView />
+    </SiteLayout>
+  ),
+});
