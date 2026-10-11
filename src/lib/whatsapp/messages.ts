@@ -22,6 +22,10 @@ export function seminarQuestionMessage(): string {
   return `Hello ${siteConfig.name}! I have a question about the free wellness seminar.`;
 }
 
+export function businessInterestMessage(): string {
+  return `Hello ${siteConfig.name}! I'm interested in becoming a KEDI distributor and would like to learn more.`;
+}
+
 export function storySubmissionMessage(): string {
   return `Hello ${siteConfig.name}! I'd like to share my experience with your service.`;
 }

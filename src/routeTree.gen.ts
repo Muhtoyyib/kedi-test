@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from "./routes/__root"
 import { Route as IndexRouteImport } from "./routes/index"
 import { Route as R404RouteImport } from "./routes/404"
+import { Route as BusinessOpportunityRouteImport } from "./routes/business-opportunity"
 import { Route as RobotsDottxtRouteImport } from "./routes/robots[.]txt"
 import { Route as SeminarsRouteImport } from "./routes/seminars"
 import { Route as SitemapDotxmlRouteImport } from "./routes/sitemap[.]xml"
@@ -30,6 +31,11 @@ const IndexRoute = IndexRouteImport.update({
 const R404Route = R404RouteImport.update({
   id: "/404",
   path: "/404",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BusinessOpportunityRoute = BusinessOpportunityRouteImport.update({
+  id: "/business-opportunity",
+  path: "/business-opportunity",
   getParentRoute: () => rootRouteImport,
 } as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
@@ -86,6 +92,7 @@ const ShopCategoryRoute = ShopCategoryRouteImport.update({
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
   "/404": typeof R404Route
+  "/business-opportunity": typeof BusinessOpportunityRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
@@ -100,6 +107,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
   "/404": typeof R404Route
+  "/business-opportunity": typeof BusinessOpportunityRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   "/": typeof IndexRoute
   "/404": typeof R404Route
+  "/business-opportunity": typeof BusinessOpportunityRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
   fullPaths:
     | "/"
     | "/404"
+    | "/business-opportunity"
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
@@ -145,6 +155,7 @@ export interface FileRouteTypes {
   to:
     | "/"
     | "/404"
+    | "/business-opportunity"
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
@@ -159,6 +170,7 @@ export interface FileRouteTypes {
     | "__root__"
     | "/"
     | "/404"
+    | "/business-opportunity"
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
@@ -174,6 +186,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
+  BusinessOpportunityRoute: typeof BusinessOpportunityRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SeminarsRoute: typeof SeminarsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -200,6 +213,13 @@ declare module "@tanstack/react-router" {
       path: "/404"
       fullPath: "/404"
       preLoaderRoute: typeof R404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/business-opportunity": {
+      id: "/business-opportunity"
+      path: "/business-opportunity"
+      fullPath: "/business-opportunity"
+      preLoaderRoute: typeof BusinessOpportunityRouteImport
       parentRoute: typeof rootRouteImport
     }
     "/robots.txt": {
@@ -278,6 +298,7 @@ declare module "@tanstack/react-router" {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
+  BusinessOpportunityRoute: BusinessOpportunityRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SeminarsRoute: SeminarsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

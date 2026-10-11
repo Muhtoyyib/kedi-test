@@ -2,11 +2,10 @@ import {useState} from "react";
 import {track} from "@/lib/analytics/track";
 import {submitForm} from "@/lib/forms/submit";
 import {normalizeNigerianPhone} from "@/lib/phone";
-import {siteConfig} from "@/lib/site-config";
 import {buildWhatsAppLink} from "@/lib/whatsapp/link";
 import {seminarQuestionMessage} from "@/lib/whatsapp/messages";
 import {Button} from "@/components/ui/button";
-import {Checkbox} from "@/components/ui/checkbox";
+import {ConsentField} from "@/components/ui/consent-field";
 import {Field} from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
 import {Notice} from "@/components/ui/notice";
@@ -73,29 +72,6 @@ function useInterestForm(seminarId: string | null, onSuccess: () => void) {
   return {state, set, errors, submitting, failed, onSubmit};
 }
 
-function ConsentField({checked, error, onChange}: {checked: boolean; error?: string; onChange: (v: boolean) => void}) {
-  return (
-    <div>
-      <Checkbox
-        id="interest-consent"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        aria-invalid={error ? true : undefined}
-        label={
-          <>
-            I agree that {siteConfig.name} can contact me on WhatsApp or by phone about my request. I can opt out at any time by replying
-            STOP.{" "}
-            <a href="/privacy" className="font-semibold underline underline-offset-2">
-              Privacy policy
-            </a>
-          </>
-        }
-      />
-      {error ? <p className="text-sm text-danger">{error}</p> : null}
-    </div>
-  );
-}
-
 // Fallback when Luma has no event ID or the embed fails: records the
 // visitor's interest in the Sheet, then sends them to the thank-you page.
 export function SeminarInterestForm({seminarId, onSuccess = defaultOnSuccess}: InterestFormProps) {
@@ -110,7 +86,7 @@ export function SeminarInterestForm({seminarId, onSuccess = defaultOnSuccess}: I
         <Field id="interest-phone" label="WhatsApp number" required error={errors.phone}>
           <PhoneInput value={state.phone} onChange={(e) => set({phone: e.target.value})} autoComplete="tel-national" inputMode="tel" />
         </Field>
-        <ConsentField checked={state.consent} error={errors.consent} onChange={(v) => set({consent: v})} />
+        <ConsentField id="interest-consent" checked={state.consent} error={errors.consent} onChange={(v) => set({consent: v})} />
         <VisuallyHidden>
           <label>
             Company website

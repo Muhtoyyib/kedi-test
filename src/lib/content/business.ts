@@ -4,6 +4,8 @@
 import {aboutContent} from "../../../content/about.ts";
 import {businessContent, type BusinessContent} from "../../../content/business.ts";
 
+export type {BusinessContent, BusinessIcon} from "../../../content/business.ts";
+
 export function getBusinessContent(): BusinessContent {
   const resolve = (text: string) => text.replaceAll("{distributorName}", aboutContent.distributor.name);
   return {
