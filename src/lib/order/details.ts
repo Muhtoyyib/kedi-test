@@ -2,7 +2,7 @@
 // (sections/04-order-details-form). Referral codes use the change-06 format.
 
 import {normalizeNigerianPhone} from "@/lib/phone";
-import {REFERRAL_CODE_RE} from "@/lib/referral";
+import {REFERRAL_CODE_RE} from "@/lib/referral/code";
 
 export const OTHER_AREA = "__other__";
 const DETAILS_KEY = "order-details:v1";

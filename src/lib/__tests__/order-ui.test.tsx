@@ -9,7 +9,7 @@ import {markAnalyticsReady, resetAnalytics} from "@/lib/analytics/track";
 import {cartDrawer} from "@/lib/cart/drawer-state";
 import {dispatch} from "@/lib/cart/store";
 import {clearPending, savePending} from "@/lib/order/pending";
-import {REFERRAL_KEY} from "@/lib/referral";
+import {REFERRAL_KEY} from "@/lib/referral/capture";
 
 function Harness() {
   const state = useOrderDetails();

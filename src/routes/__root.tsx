@@ -3,6 +3,7 @@ import * as React from "react";
 import appCss from "@/styles/app.css?url";
 import fontUrl from "@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url";
 import {AnalyticsBridge} from "@/components/analytics-bridge";
+import {ReferralCapture} from "@/components/referral-capture";
 import {jsonLdScripts, localBusinessLd, organizationLd, webSiteLd} from "@/lib/seo/jsonld";
 import {siteConfig} from "@/lib/site-config";
 
@@ -36,6 +37,7 @@ function RootComponent() {
     <RootDocument>
       <Outlet />
       <AnalyticsBridge />
+      <ReferralCapture />
     </RootDocument>
   );
 }

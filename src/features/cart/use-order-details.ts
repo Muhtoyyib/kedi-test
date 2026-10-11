@@ -4,7 +4,7 @@
 
 import {useCallback, useMemo, useState} from "react";
 import {clearDetails, emptyDetails, loadDetails, validateDetails, type DetailsField, type OrderDetails} from "@/lib/order/details";
-import {getStoredReferralCode} from "@/lib/referral";
+import {getStoredReferralCode} from "@/lib/referral/capture";
 
 export interface OrderDetailsState {
   details: OrderDetails;
