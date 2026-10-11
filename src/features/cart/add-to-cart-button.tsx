@@ -54,7 +54,8 @@ export function AddToCartButton({product, variant, className}: AddToCartButtonPr
 }
 
 function StatusLines({askPrice, inCartQty, variant}: {askPrice: boolean; inCartQty: number; variant: AddToCartVariant}) {
-  if (askPrice) return <p className="mt-1 text-sm text-text-muted">We'll confirm the price on WhatsApp</p>;
+  // pdp suppresses this — its price block already carries the same helper.
+  if (askPrice) return variant === "pdp" ? null : <p className="mt-1 text-sm text-text-muted">We'll confirm the price on WhatsApp</p>;
   if (inCartQty > 0 && variant !== "pdp") return <p className="mt-1 text-sm text-leaf-strong">In your cart: {inCartQty}</p>;
   return null;
 }

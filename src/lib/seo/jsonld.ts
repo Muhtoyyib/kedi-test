@@ -3,7 +3,7 @@
 // ownership; KEDI appears only as the product *brand*.
 
 import {getSettings} from "../catalog/settings";
-import type {GeneratedImage} from "../catalog/types";
+import type {GeneratedImage, Product} from "../catalog/types";
 import {siteConfig} from "../site-config";
 import {absoluteUrl} from "./meta";
 
@@ -118,6 +118,48 @@ export function itemListLd(paths: string[]): JsonLd {
       "@type": "ListItem",
       position: i + 1,
       ...(absoluteUrl(p) ? {url: absoluteUrl(p)} : {name: p}),
+    })),
+  };
+}
+
+/** Product schema for /products/{slug}. Offer only when priced — an
+ *  ask-price product must not publish a fake price. */
+export function productLd(product: Product, categoryName: string): JsonLd {
+  return {
+    "@context": ORG_TYPE,
+    "@type": "Product",
+    name: product.name,
+    description: product.seo.description || product.shortBenefit,
+    ...(absoluteUrl(`/products/${product.slug}`) ? {url: absoluteUrl(`/products/${product.slug}`)} : {}),
+    ...(absoluteImageUrl(product.images[0] ?? null) ? {image: absoluteImageUrl(product.images[0]!)} : {}),
+    sku: product.id,
+    category: categoryName,
+    brand: {"@type": "Brand", name: "KEDI Healthcare"},
+    ...(product.priceNgn !== null
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "NGN",
+            price: product.priceNgn,
+            availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            ...(absoluteUrl(`/products/${product.slug}`) ? {url: absoluteUrl(`/products/${product.slug}`)} : {}),
+          },
+        }
+      : {}),
+  };
+}
+
+/** FAQPage schema — product-specific FAQs only (general ordering FAQs are
+ *  repeated across pages and would duplicate). */
+export function faqPageLd(faqs: readonly {question: string; answer: string}[]): JsonLd | null {
+  if (faqs.length === 0) return null;
+  return {
+    "@context": ORG_TYPE,
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {"@type": "Answer", text: f.answer},
     })),
   };
 }

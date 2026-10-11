@@ -76,6 +76,8 @@
   --text-price--line-height: 1.1;
   --text-price-md: 1.5rem;
   --text-price-md--line-height: 1.1;
+  --text-price-lg: 2rem;
+  --text-price-lg--line-height: 1.1;
 }
 
 @layer base {
@@ -155,4 +157,10 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Comfortable bottom padding that also clears the phone safe area — used
+   by fixed bottom bars (sticky buy bar, cart drawer). */
+@utility pb-safe-comfortable {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
 }

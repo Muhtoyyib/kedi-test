@@ -4,6 +4,7 @@ import {formatNaira} from "@/lib/format/naira";
 const sizeClasses = {
   sm: "text-base",
   md: "text-price md:text-price-md",
+  lg: "text-price-md md:text-price-lg",
 } as const;
 
 export function Price({
