@@ -11,6 +11,8 @@ export interface MetaInput {
   /** Absolute path or URL; falls back to /og/default.jpg. */
   image?: string;
   type?: "website" | "product" | "article";
+  /** ISO date — emitted as article:published_time (learn/page design). */
+  publishedTime?: string;
   noindex?: boolean;
 }
 
@@ -26,7 +28,7 @@ export function absoluteUrl(pathOrUrl: string): string | null {
   return new URL(pathOrUrl, siteConfig.url).toString();
 }
 
-export function buildMeta({title, description, path, image, type = "website", noindex = false}: MetaInput) {
+export function buildMeta({title, description, path, image, type = "website", publishedTime, noindex = false}: MetaInput) {
   const canonical = absoluteUrl(path);
   const ogImage = absoluteUrl(image ?? "/og/default.jpg");
   const meta: MetaTag[] = [
@@ -41,6 +43,7 @@ export function buildMeta({title, description, path, image, type = "website", no
     {name: "twitter:title", content: title},
     {name: "twitter:description", content: description.slice(0, 155)},
   ];
+  if (type === "article" && publishedTime) meta.push({property: "article:published_time", content: publishedTime});
   if (canonical) meta.push({property: "og:url", content: canonical});
   if (ogImage) meta.push({property: "og:image", content: ogImage}, {name: "twitter:image", content: ogImage});
   return {meta, links: canonical ? [{rel: "canonical", href: canonical}] : []};

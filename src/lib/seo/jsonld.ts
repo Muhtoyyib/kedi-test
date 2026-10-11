@@ -3,7 +3,7 @@
 // ownership; KEDI appears only as the product *brand*.
 
 import {getSettings} from "../catalog/settings";
-import type {GeneratedImage, Product, Seminar} from "../catalog/types";
+import type {Article, GeneratedImage, Product, Seminar} from "../catalog/types";
 import {siteConfig} from "../site-config";
 import {absoluteUrl} from "./meta";
 
@@ -166,6 +166,25 @@ export function seminarEventLd(s: Seminar): JsonLd {
     organizer: {"@type": "Organization", name: siteConfig.name, ...(siteConfig.url ? {url: siteConfig.url} : {})},
     offers: {"@type": "Offer", price: 0, priceCurrency: "NGN", availability: "https://schema.org/InStock", url: s.lumaUrl},
     isAccessibleForFree: true,
+  };
+}
+
+/** Article schema for /learn/{slug} (learn/page spec). The business is both
+ *  author and publisher — never KEDI. */
+export function articleLd(article: Article): JsonLd {
+  const org = {"@type": "Organization", name: siteConfig.name, ...(siteConfig.url ? {url: siteConfig.url} : {})};
+  const image = absoluteImageUrl(article.cover);
+  const url = absoluteUrl(`/learn/${article.slug}`);
+  return {
+    "@context": ORG_TYPE,
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    ...(image ? {image: [image]} : {}),
+    datePublished: article.date,
+    author: org,
+    publisher: org,
+    ...(url ? {mainEntityOfPage: url} : {}),
   };
 }
 

@@ -10,6 +10,8 @@ interface VideoEmbedProps {
   title: string;
   poster?: string;
   location: VideoLocation;
+  /** "9:16" for vertical Shorts/TikTok facades (learn/video-library spec). */
+  aspect?: "16/9" | "9/16";
   className?: string;
 }
 
@@ -17,8 +19,10 @@ function embedSrc(provider: "youtube" | "tiktok", id: string) {
   return provider === "youtube" ? `https://www.youtube-nocookie.com/embed/${id}?autoplay=1` : `https://www.tiktok.com/embed/${id}`;
 }
 
+const aspectClasses = {"16/9": "aspect-video", "9/16": "aspect-9x16"} as const;
+
 // Click-to-load facade: no iframe is requested until the visitor taps play.
-export function VideoEmbed({provider, id, title, poster, location, className}: VideoEmbedProps) {
+export function VideoEmbed({provider, id, title, poster, location, aspect = "16/9", className}: VideoEmbedProps) {
   const [playing, setPlaying] = useState(false);
   const thumbnail = poster ?? (provider === "youtube" ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : undefined);
 
@@ -29,7 +33,7 @@ export function VideoEmbed({provider, id, title, poster, location, className}: V
         title={title}
         allow="autoplay; encrypted-media; picture-in-picture"
         allowFullScreen
-        className={cn("aspect-video w-full rounded-card border-0", className)}
+        className={cn(aspectClasses[aspect], "w-full rounded-card border-0", className)}
       />
     );
   }
@@ -42,7 +46,7 @@ export function VideoEmbed({provider, id, title, poster, location, className}: V
         setPlaying(true);
         track({event: "video_play", provider, location});
       }}
-      className={cn("relative block aspect-video w-full overflow-hidden rounded-card bg-ink text-canvas", className)}
+      className={cn("relative block w-full overflow-hidden rounded-card bg-ink text-canvas", aspectClasses[aspect], className)}
     >
       {thumbnail ? (
         <img src={thumbnail} alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full object-cover opacity-80" />

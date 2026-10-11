@@ -159,6 +159,11 @@
   }
 }
 
+/* Vertical video facades (TikTok/Shorts) in the learn video library. */
+@utility aspect-9x16 {
+  aspect-ratio: 9 / 16;
+}
+
 /* Comfortable bottom padding that also clears the phone safe area — used
    by fixed bottom bars (sticky buy bar, cart drawer). */
 @utility pb-safe-comfortable {

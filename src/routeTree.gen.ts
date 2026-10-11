@@ -15,6 +15,8 @@ import { Route as RobotsDottxtRouteImport } from "./routes/robots[.]txt"
 import { Route as SeminarsRouteImport } from "./routes/seminars"
 import { Route as SitemapDotxmlRouteImport } from "./routes/sitemap[.]xml"
 import { Route as StyleguideRouteImport } from "./routes/styleguide"
+import { Route as LearnIndexRouteImport } from "./routes/learn.index"
+import { Route as LearnSlugRouteImport } from "./routes/learn.$slug"
 import { Route as ProductsSlugRouteImport } from "./routes/products.$slug"
 import { Route as ShopIndexRouteImport } from "./routes/shop.index"
 import { Route as ShopCategoryRouteImport } from "./routes/shop.$category"
@@ -49,6 +51,16 @@ const StyleguideRoute = StyleguideRouteImport.update({
   path: "/styleguide",
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnIndexRoute = LearnIndexRouteImport.update({
+  id: "/learn/",
+  path: "/learn/",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnSlugRoute = LearnSlugRouteImport.update({
+  id: "/learn/$slug",
+  path: "/learn/$slug",
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: "/products/$slug",
   path: "/products/$slug",
@@ -72,8 +84,10 @@ export interface FileRoutesByFullPath {
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
   "/styleguide": typeof StyleguideRoute
+  "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
   "/shop/$category": typeof ShopCategoryRoute
+  "/learn/": typeof LearnIndexRoute
   "/shop/": typeof ShopIndexRoute
 }
 export interface FileRoutesByTo {
@@ -83,8 +97,10 @@ export interface FileRoutesByTo {
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
   "/styleguide": typeof StyleguideRoute
+  "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
   "/shop/$category": typeof ShopCategoryRoute
+  "/learn": typeof LearnIndexRoute
   "/shop": typeof ShopIndexRoute
 }
 export interface FileRoutesById {
@@ -95,8 +111,10 @@ export interface FileRoutesById {
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
   "/styleguide": typeof StyleguideRoute
+  "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
   "/shop/$category": typeof ShopCategoryRoute
+  "/learn/": typeof LearnIndexRoute
   "/shop/": typeof ShopIndexRoute
 }
 export interface FileRouteTypes {
@@ -108,8 +126,10 @@ export interface FileRouteTypes {
     | "/seminars"
     | "/sitemap.xml"
     | "/styleguide"
+    | "/learn/$slug"
     | "/products/$slug"
     | "/shop/$category"
+    | "/learn/"
     | "/shop/"
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -119,8 +139,10 @@ export interface FileRouteTypes {
     | "/seminars"
     | "/sitemap.xml"
     | "/styleguide"
+    | "/learn/$slug"
     | "/products/$slug"
     | "/shop/$category"
+    | "/learn"
     | "/shop"
   id:
     | "__root__"
@@ -130,8 +152,10 @@ export interface FileRouteTypes {
     | "/seminars"
     | "/sitemap.xml"
     | "/styleguide"
+    | "/learn/$slug"
     | "/products/$slug"
     | "/shop/$category"
+    | "/learn/"
     | "/shop/"
   fileRoutesById: FileRoutesById
 }
@@ -142,8 +166,10 @@ export interface RootRouteChildren {
   SeminarsRoute: typeof SeminarsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StyleguideRoute: typeof StyleguideRoute
+  LearnSlugRoute: typeof LearnSlugRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ShopCategoryRoute: typeof ShopCategoryRoute
+  LearnIndexRoute: typeof LearnIndexRoute
   ShopIndexRoute: typeof ShopIndexRoute
 }
 
@@ -191,6 +217,20 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof StyleguideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/learn/": {
+      id: "/learn/"
+      path: "/learn"
+      fullPath: "/learn/"
+      preLoaderRoute: typeof LearnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/learn/$slug": {
+      id: "/learn/$slug"
+      path: "/learn/$slug"
+      fullPath: "/learn/$slug"
+      preLoaderRoute: typeof LearnSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     "/products/$slug": {
       id: "/products/$slug"
       path: "/products/$slug"
@@ -222,8 +262,10 @@ const rootRouteChildren: RootRouteChildren = {
   SeminarsRoute: SeminarsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StyleguideRoute: StyleguideRoute,
+  LearnSlugRoute: LearnSlugRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ShopCategoryRoute: ShopCategoryRoute,
+  LearnIndexRoute: LearnIndexRoute,
   ShopIndexRoute: ShopIndexRoute,
 }
 export const routeTree = rootRouteImport
