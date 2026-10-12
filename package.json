@@ -6,9 +6,9 @@
   "sideEffects": false,
   "scripts": {
     "assert:prod": "node scripts/assert-production-ready.ts",
-    "build": "vp run generate && vp build && node scripts/write-404.ts && tsc -b",
+    "build": "bun run catalog:fetch && vp run generate && vp build && node scripts/write-404.ts && tsc -b",
     "catalog:fetch": "node scripts/fetch-catalog.ts",
-    "ci:build": "vp run generate && vp run lint && node scripts/lint-content.ts && vp test --run && vp run build",
+    "ci:build": "vp run generate && vp run lint && node scripts/lint-content.ts && vp test --run && bun run build",
     "clean": "rm -rf dist",
     "deploy": "wrangler deploy",
     "dev": "vp dev --force",
