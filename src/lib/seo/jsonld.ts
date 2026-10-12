@@ -96,6 +96,21 @@ export function localBusinessLd(founder?: JsonLd): JsonLd {
   };
 }
 
+/** ContactPage node referencing the business (contact/page design). */
+export function contactPageLd(): JsonLd {
+  return {
+    "@context": ORG_TYPE,
+    "@type": "ContactPage",
+    name: `Contact ${siteConfig.name}`,
+    ...(siteConfig.url ? {url: `${siteConfig.url}/contact`} : {}),
+    about: {
+      "@type": "HealthAndBeautyBusiness",
+      name: siteConfig.name,
+      ...(siteConfig.url ? {url: siteConfig.url} : {}),
+    },
+  };
+}
+
 export function webSiteLd(): JsonLd {
   return {
     "@context": ORG_TYPE,
