@@ -17,7 +17,7 @@ if (catalog.source === "fixture") {
 // added once their route files exist — the page changes land in later changes.
 // "/404" is the rendered not-found page; scripts/write-404.ts moves it to
 // dist/client/404.html for wrangler's `not_found_handling: "404-page"`.
-const pageRoutes = ["shop.index", "seminars", "learn.index", "stories", "business-opportunity", "about"].filter((name) =>
+const pageRoutes = ["shop.index", "seminars", "learn.index", "stories", "business-opportunity", "about", "faq"].filter((name) =>
   existsSync(resolve(import.meta.dirname, `src/routes/${name}.tsx`))
 );
 

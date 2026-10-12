@@ -3,6 +3,7 @@
 // required token has no value (e.g. no bank details → no "How do I pay?").
 
 import {faqItems, type FaqGroup, type FaqItem, type FaqPage} from "../../../content/faq.ts";
+import {parseMiniMarkdown} from "@/lib/content/mini-markdown";
 import {catalog} from "@/lib/catalog/data";
 import {getSettings} from "@/lib/catalog/settings";
 import type {Catalog, Inline} from "@/lib/catalog/types";
@@ -45,18 +46,9 @@ export function resolveAnswer(answer: string, cat: Catalog = catalog): string | 
   return missing ? null : resolved;
 }
 
-/** Splits "[text](/href)" links in resolved answer text into Inline runs. */
+/** Splits resolved answer text into Inline runs (bold + links via mini-markdown). */
 export function answerInlines(answer: string): Inline[] {
-  const out: Inline[] = [];
-  const re = /\[([^\]]+)\]\(([^)]+)\)/g;
-  let last = 0;
-  for (const m of answer.matchAll(re)) {
-    if (m.index > last) out.push({text: answer.slice(last, m.index)});
-    out.push({text: m[1], href: m[2]});
-    last = m.index + m[0].length;
-  }
-  if (last < answer.length) out.push({text: answer.slice(last)});
-  return out;
+  return parseMiniMarkdown(answer).flat();
 }
 
 export function getFaqs(options: {page?: FaqPage; group?: FaqGroup} = {}, cat: Catalog = catalog): ResolvedFaqItem[] {
