@@ -4,6 +4,7 @@
 
 import {getSettings} from "../catalog/settings";
 import type {Article, GeneratedImage, Product, Seminar} from "../catalog/types";
+import {getAbout} from "../content/about";
 import {siteConfig} from "../site-config";
 import {absoluteUrl} from "./meta";
 
@@ -57,7 +58,19 @@ export function openingHoursSpec(text: string): JsonLd | null {
   };
 }
 
-export function localBusinessLd(): JsonLd {
+/** Person node for the distributor — page-level `founder` on the
+ *  LocalBusiness node emitted by the /about route (about/page design). */
+export function personLd(): JsonLd {
+  const {distributor} = getAbout();
+  return {
+    "@type": "Person",
+    name: distributor.name,
+    jobTitle: "Independent KEDI Distributor",
+    worksFor: {"@type": "Organization", name: siteConfig.name},
+  };
+}
+
+export function localBusinessLd(founder?: JsonLd): JsonLd {
   const settings = getSettings();
   const {address, phone} = siteConfig;
   const spec = openingHoursSpec(settings.openingHours);
@@ -79,6 +92,7 @@ export function localBusinessLd(): JsonLd {
     ...(spec ? {openingHoursSpecification: spec} : {}),
     areaServed: [...siteConfig.serviceAreas],
     sameAs: socialUrls(),
+    ...(founder ? {founder} : {}),
   };
 }
 

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from "./routes/__root"
 import { Route as IndexRouteImport } from "./routes/index"
 import { Route as R404RouteImport } from "./routes/404"
+import { Route as AboutRouteImport } from "./routes/about"
 import { Route as BusinessOpportunityRouteImport } from "./routes/business-opportunity"
 import { Route as RobotsDottxtRouteImport } from "./routes/robots[.]txt"
 import { Route as SeminarsRouteImport } from "./routes/seminars"
@@ -31,6 +32,11 @@ const IndexRoute = IndexRouteImport.update({
 const R404Route = R404RouteImport.update({
   id: "/404",
   path: "/404",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: "/about",
+  path: "/about",
   getParentRoute: () => rootRouteImport,
 } as any)
 const BusinessOpportunityRoute = BusinessOpportunityRouteImport.update({
@@ -92,6 +98,7 @@ const ShopCategoryRoute = ShopCategoryRouteImport.update({
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
   "/404": typeof R404Route
+  "/about": typeof AboutRoute
   "/business-opportunity": typeof BusinessOpportunityRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
   "/404": typeof R404Route
+  "/about": typeof AboutRoute
   "/business-opportunity": typeof BusinessOpportunityRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   "/": typeof IndexRoute
   "/404": typeof R404Route
+  "/about": typeof AboutRoute
   "/business-opportunity": typeof BusinessOpportunityRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
   fullPaths:
     | "/"
     | "/404"
+    | "/about"
     | "/business-opportunity"
     | "/robots.txt"
     | "/seminars"
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
   to:
     | "/"
     | "/404"
+    | "/about"
     | "/business-opportunity"
     | "/robots.txt"
     | "/seminars"
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | "__root__"
     | "/"
     | "/404"
+    | "/about"
     | "/business-opportunity"
     | "/robots.txt"
     | "/seminars"
@@ -186,6 +198,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
+  AboutRoute: typeof AboutRoute
   BusinessOpportunityRoute: typeof BusinessOpportunityRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SeminarsRoute: typeof SeminarsRoute
@@ -213,6 +226,13 @@ declare module "@tanstack/react-router" {
       path: "/404"
       fullPath: "/404"
       preLoaderRoute: typeof R404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/about": {
+      id: "/about"
+      path: "/about"
+      fullPath: "/about"
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     "/business-opportunity": {
@@ -298,6 +318,7 @@ declare module "@tanstack/react-router" {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
+  AboutRoute: AboutRoute,
   BusinessOpportunityRoute: BusinessOpportunityRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SeminarsRoute: SeminarsRoute,

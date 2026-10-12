@@ -4,6 +4,8 @@
 import {aboutContent, type AboutContent} from "../../../content/about.ts";
 import {siteConfig} from "@/lib/site-config";
 
+export type {AboutContent, AboutIcon} from "../../../content/about.ts";
+
 function resolveTokens(text: string): string {
   return text.replaceAll("{city}", siteConfig.city);
 }
