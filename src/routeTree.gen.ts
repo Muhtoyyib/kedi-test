@@ -30,6 +30,7 @@ import { Route as LearnSlugRouteImport } from "./routes/learn.$slug"
 import { Route as ProductsSlugRouteImport } from "./routes/products.$slug"
 import { Route as ShopIndexRouteImport } from "./routes/shop.index"
 import { Route as ShopCategoryRouteImport } from "./routes/shop.$category"
+import { Route as ThankYouKindRouteImport } from "./routes/thank-you.$kind"
 
 const IndexRoute = IndexRouteImport.update({
   id: "/",
@@ -136,6 +137,11 @@ const ShopCategoryRoute = ShopCategoryRouteImport.update({
   path: "/shop/$category",
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThankYouKindRoute = ThankYouKindRouteImport.update({
+  id: "/thank-you/$kind",
+  path: "/thank-you/$kind",
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
@@ -157,6 +163,7 @@ export interface FileRoutesByFullPath {
   "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
   "/shop/$category": typeof ShopCategoryRoute
+  "/thank-you/$kind": typeof ThankYouKindRoute
   "/learn/": typeof LearnIndexRoute
   "/shop/": typeof ShopIndexRoute
 }
@@ -180,6 +187,7 @@ export interface FileRoutesByTo {
   "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
   "/shop/$category": typeof ShopCategoryRoute
+  "/thank-you/$kind": typeof ThankYouKindRoute
   "/learn": typeof LearnIndexRoute
   "/shop": typeof ShopIndexRoute
 }
@@ -204,6 +212,7 @@ export interface FileRoutesById {
   "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
   "/shop/$category": typeof ShopCategoryRoute
+  "/thank-you/$kind": typeof ThankYouKindRoute
   "/learn/": typeof LearnIndexRoute
   "/shop/": typeof ShopIndexRoute
 }
@@ -229,6 +238,7 @@ export interface FileRouteTypes {
     | "/learn/$slug"
     | "/products/$slug"
     | "/shop/$category"
+    | "/thank-you/$kind"
     | "/learn/"
     | "/shop/"
   fileRoutesByTo: FileRoutesByTo
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | "/learn/$slug"
     | "/products/$slug"
     | "/shop/$category"
+    | "/thank-you/$kind"
     | "/learn"
     | "/shop"
   id:
@@ -275,6 +286,7 @@ export interface FileRouteTypes {
     | "/learn/$slug"
     | "/products/$slug"
     | "/shop/$category"
+    | "/thank-you/$kind"
     | "/learn/"
     | "/shop/"
   fileRoutesById: FileRoutesById
@@ -299,6 +311,7 @@ export interface RootRouteChildren {
   LearnSlugRoute: typeof LearnSlugRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ShopCategoryRoute: typeof ShopCategoryRoute
+  ThankYouKindRoute: typeof ThankYouKindRoute
   LearnIndexRoute: typeof LearnIndexRoute
   ShopIndexRoute: typeof ShopIndexRoute
 }
@@ -452,6 +465,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof ShopCategoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/thank-you/$kind": {
+      id: "/thank-you/$kind"
+      path: "/thank-you/$kind"
+      fullPath: "/thank-you/$kind"
+      preLoaderRoute: typeof ThankYouKindRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -475,6 +495,7 @@ const rootRouteChildren: RootRouteChildren = {
   LearnSlugRoute: LearnSlugRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ShopCategoryRoute: ShopCategoryRoute,
+  ThankYouKindRoute: ThankYouKindRoute,
   LearnIndexRoute: LearnIndexRoute,
   ShopIndexRoute: ShopIndexRoute,
 }

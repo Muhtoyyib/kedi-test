@@ -36,6 +36,10 @@ const pageRoutes = [
 const staticPaths = [
   "/",
   "/404",
+  "/thank-you/contact",
+  "/thank-you/business",
+  "/thank-you/referral",
+  "/thank-you/seminar",
   "/sitemap.xml",
   "/robots.txt",
   ...pageRoutes.map((name) => `/${name.replace(".index", "")}`),
