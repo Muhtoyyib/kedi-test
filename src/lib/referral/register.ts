@@ -12,6 +12,8 @@ interface RegisterDeps {
   url?: string;
   post?: (url: string, body: string) => Promise<void>;
   retryMs?: number;
+  /** Called when the POST and its retry both fail (refer/get-your-code). */
+  onGiveUp?: () => void;
 }
 
 const endpoint = (): string => (import.meta.env?.VITE_APPS_SCRIPT_URL as string | undefined) ?? "";
@@ -28,6 +30,6 @@ export function registerReferralCode(input: ReferralRegistration, deps: Register
   const post = deps.post ?? defaultPost;
   const body = JSON.stringify({type: "referral_code", payload: {firstName: input.firstName, phone: input.phone, code: input.code}});
   void post(url, body).catch(() => {
-    setTimeout(() => void post(url, body).catch(() => undefined), deps.retryMs ?? RETRY_MS);
+    setTimeout(() => void post(url, body).catch(() => deps.onGiveUp?.()), deps.retryMs ?? RETRY_MS);
   });
 }

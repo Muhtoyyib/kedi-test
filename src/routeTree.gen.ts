@@ -15,6 +15,7 @@ import { Route as AboutRouteImport } from "./routes/about"
 import { Route as BusinessOpportunityRouteImport } from "./routes/business-opportunity"
 import { Route as ContactRouteImport } from "./routes/contact"
 import { Route as FaqRouteImport } from "./routes/faq"
+import { Route as ReferRouteImport } from "./routes/refer"
 import { Route as RobotsDottxtRouteImport } from "./routes/robots[.]txt"
 import { Route as SeminarsRouteImport } from "./routes/seminars"
 import { Route as SitemapDotxmlRouteImport } from "./routes/sitemap[.]xml"
@@ -54,6 +55,11 @@ const ContactRoute = ContactRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: "/faq",
   path: "/faq",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReferRoute = ReferRouteImport.update({
+  id: "/refer",
+  path: "/refer",
   getParentRoute: () => rootRouteImport,
 } as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   "/business-opportunity": typeof BusinessOpportunityRoute
   "/contact": typeof ContactRoute
   "/faq": typeof FaqRoute
+  "/refer": typeof ReferRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   "/business-opportunity": typeof BusinessOpportunityRoute
   "/contact": typeof ContactRoute
   "/faq": typeof FaqRoute
+  "/refer": typeof ReferRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
@@ -151,6 +159,7 @@ export interface FileRoutesById {
   "/business-opportunity": typeof BusinessOpportunityRoute
   "/contact": typeof ContactRoute
   "/faq": typeof FaqRoute
+  "/refer": typeof ReferRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | "/business-opportunity"
     | "/contact"
     | "/faq"
+    | "/refer"
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
@@ -189,6 +199,7 @@ export interface FileRouteTypes {
     | "/business-opportunity"
     | "/contact"
     | "/faq"
+    | "/refer"
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
@@ -207,6 +218,7 @@ export interface FileRouteTypes {
     | "/business-opportunity"
     | "/contact"
     | "/faq"
+    | "/refer"
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
@@ -226,6 +238,7 @@ export interface RootRouteChildren {
   BusinessOpportunityRoute: typeof BusinessOpportunityRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
+  ReferRoute: typeof ReferRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SeminarsRoute: typeof SeminarsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -280,6 +293,13 @@ declare module "@tanstack/react-router" {
       path: "/faq"
       fullPath: "/faq"
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/refer": {
+      id: "/refer"
+      path: "/refer"
+      fullPath: "/refer"
+      preLoaderRoute: typeof ReferRouteImport
       parentRoute: typeof rootRouteImport
     }
     "/robots.txt": {
@@ -362,6 +382,7 @@ const rootRouteChildren: RootRouteChildren = {
   BusinessOpportunityRoute: BusinessOpportunityRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
+  ReferRoute: ReferRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SeminarsRoute: SeminarsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
