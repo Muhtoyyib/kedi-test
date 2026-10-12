@@ -42,22 +42,27 @@ export function SiteLayout({children, hideFloatingWhatsApp, className}: SiteLayo
       >
         Skip to content
       </a>
-      <CookieConsent />
-      <AnnouncementBar />
-      <SiteHeader menuOpen={menuOpen} onMenuOpenChange={onMenuOpenChange} />
-      <ReturnBanner />
-      {menuMounted ? (
-        <Suspense fallback={null}>
-          <LazyMobileMenu open={menuOpen} onClose={() => onMenuOpenChange(false)} />
-        </Suspense>
-      ) : null}
+      {/* print:hidden hides all chrome on legal-page printouts (legal/layout). */}
+      <div className="print:hidden">
+        <CookieConsent />
+        <AnnouncementBar />
+        <SiteHeader menuOpen={menuOpen} onMenuOpenChange={onMenuOpenChange} />
+        <ReturnBanner />
+        {menuMounted ? (
+          <Suspense fallback={null}>
+            <LazyMobileMenu open={menuOpen} onClose={() => onMenuOpenChange(false)} />
+          </Suspense>
+        ) : null}
+      </div>
       <main id="main" tabIndex={-1} className={className}>
         {children}
       </main>
-      <SiteFooter />
-      {hideFloatingWhatsApp !== true ? <FloatingWhatsApp hidden={menuOpen} mobileOnlyHidden={hideFloatingWhatsApp === "mobile"} /> : null}
-      <div id="cart-drawer-mount">
-        <CartDrawerMount />
+      <div className="print:hidden">
+        <SiteFooter />
+        {hideFloatingWhatsApp !== true ? <FloatingWhatsApp hidden={menuOpen} mobileOnlyHidden={hideFloatingWhatsApp === "mobile"} /> : null}
+        <div id="cart-drawer-mount">
+          <CartDrawerMount />
+        </div>
       </div>
     </ToastProvider>
   );

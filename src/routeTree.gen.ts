@@ -14,13 +14,17 @@ import { Route as R404RouteImport } from "./routes/404"
 import { Route as AboutRouteImport } from "./routes/about"
 import { Route as BusinessOpportunityRouteImport } from "./routes/business-opportunity"
 import { Route as ContactRouteImport } from "./routes/contact"
+import { Route as DeliveryAndReturnsRouteImport } from "./routes/delivery-and-returns"
 import { Route as FaqRouteImport } from "./routes/faq"
+import { Route as HealthDisclaimerRouteImport } from "./routes/health-disclaimer"
+import { Route as PrivacyRouteImport } from "./routes/privacy"
 import { Route as ReferRouteImport } from "./routes/refer"
 import { Route as RobotsDottxtRouteImport } from "./routes/robots[.]txt"
 import { Route as SeminarsRouteImport } from "./routes/seminars"
 import { Route as SitemapDotxmlRouteImport } from "./routes/sitemap[.]xml"
 import { Route as StoriesRouteImport } from "./routes/stories"
 import { Route as StyleguideRouteImport } from "./routes/styleguide"
+import { Route as TermsRouteImport } from "./routes/terms"
 import { Route as LearnIndexRouteImport } from "./routes/learn.index"
 import { Route as LearnSlugRouteImport } from "./routes/learn.$slug"
 import { Route as ProductsSlugRouteImport } from "./routes/products.$slug"
@@ -52,9 +56,24 @@ const ContactRoute = ContactRouteImport.update({
   path: "/contact",
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeliveryAndReturnsRoute = DeliveryAndReturnsRouteImport.update({
+  id: "/delivery-and-returns",
+  path: "/delivery-and-returns",
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: "/faq",
   path: "/faq",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HealthDisclaimerRoute = HealthDisclaimerRouteImport.update({
+  id: "/health-disclaimer",
+  path: "/health-disclaimer",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: "/privacy",
+  path: "/privacy",
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReferRoute = ReferRouteImport.update({
@@ -85,6 +104,11 @@ const StoriesRoute = StoriesRouteImport.update({
 const StyleguideRoute = StyleguideRouteImport.update({
   id: "/styleguide",
   path: "/styleguide",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: "/terms",
+  path: "/terms",
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnIndexRoute = LearnIndexRouteImport.update({
@@ -119,13 +143,17 @@ export interface FileRoutesByFullPath {
   "/about": typeof AboutRoute
   "/business-opportunity": typeof BusinessOpportunityRoute
   "/contact": typeof ContactRoute
+  "/delivery-and-returns": typeof DeliveryAndReturnsRoute
   "/faq": typeof FaqRoute
+  "/health-disclaimer": typeof HealthDisclaimerRoute
+  "/privacy": typeof PrivacyRoute
   "/refer": typeof ReferRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
   "/stories": typeof StoriesRoute
   "/styleguide": typeof StyleguideRoute
+  "/terms": typeof TermsRoute
   "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
   "/shop/$category": typeof ShopCategoryRoute
@@ -138,13 +166,17 @@ export interface FileRoutesByTo {
   "/about": typeof AboutRoute
   "/business-opportunity": typeof BusinessOpportunityRoute
   "/contact": typeof ContactRoute
+  "/delivery-and-returns": typeof DeliveryAndReturnsRoute
   "/faq": typeof FaqRoute
+  "/health-disclaimer": typeof HealthDisclaimerRoute
+  "/privacy": typeof PrivacyRoute
   "/refer": typeof ReferRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
   "/stories": typeof StoriesRoute
   "/styleguide": typeof StyleguideRoute
+  "/terms": typeof TermsRoute
   "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
   "/shop/$category": typeof ShopCategoryRoute
@@ -158,13 +190,17 @@ export interface FileRoutesById {
   "/about": typeof AboutRoute
   "/business-opportunity": typeof BusinessOpportunityRoute
   "/contact": typeof ContactRoute
+  "/delivery-and-returns": typeof DeliveryAndReturnsRoute
   "/faq": typeof FaqRoute
+  "/health-disclaimer": typeof HealthDisclaimerRoute
+  "/privacy": typeof PrivacyRoute
   "/refer": typeof ReferRoute
   "/robots.txt": typeof RobotsDottxtRoute
   "/seminars": typeof SeminarsRoute
   "/sitemap.xml": typeof SitemapDotxmlRoute
   "/stories": typeof StoriesRoute
   "/styleguide": typeof StyleguideRoute
+  "/terms": typeof TermsRoute
   "/learn/$slug": typeof LearnSlugRoute
   "/products/$slug": typeof ProductsSlugRoute
   "/shop/$category": typeof ShopCategoryRoute
@@ -179,13 +215,17 @@ export interface FileRouteTypes {
     | "/about"
     | "/business-opportunity"
     | "/contact"
+    | "/delivery-and-returns"
     | "/faq"
+    | "/health-disclaimer"
+    | "/privacy"
     | "/refer"
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
     | "/stories"
     | "/styleguide"
+    | "/terms"
     | "/learn/$slug"
     | "/products/$slug"
     | "/shop/$category"
@@ -198,13 +238,17 @@ export interface FileRouteTypes {
     | "/about"
     | "/business-opportunity"
     | "/contact"
+    | "/delivery-and-returns"
     | "/faq"
+    | "/health-disclaimer"
+    | "/privacy"
     | "/refer"
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
     | "/stories"
     | "/styleguide"
+    | "/terms"
     | "/learn/$slug"
     | "/products/$slug"
     | "/shop/$category"
@@ -217,13 +261,17 @@ export interface FileRouteTypes {
     | "/about"
     | "/business-opportunity"
     | "/contact"
+    | "/delivery-and-returns"
     | "/faq"
+    | "/health-disclaimer"
+    | "/privacy"
     | "/refer"
     | "/robots.txt"
     | "/seminars"
     | "/sitemap.xml"
     | "/stories"
     | "/styleguide"
+    | "/terms"
     | "/learn/$slug"
     | "/products/$slug"
     | "/shop/$category"
@@ -237,13 +285,17 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BusinessOpportunityRoute: typeof BusinessOpportunityRoute
   ContactRoute: typeof ContactRoute
+  DeliveryAndReturnsRoute: typeof DeliveryAndReturnsRoute
   FaqRoute: typeof FaqRoute
+  HealthDisclaimerRoute: typeof HealthDisclaimerRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReferRoute: typeof ReferRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SeminarsRoute: typeof SeminarsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StoriesRoute: typeof StoriesRoute
   StyleguideRoute: typeof StyleguideRoute
+  TermsRoute: typeof TermsRoute
   LearnSlugRoute: typeof LearnSlugRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ShopCategoryRoute: typeof ShopCategoryRoute
@@ -288,11 +340,32 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/delivery-and-returns": {
+      id: "/delivery-and-returns"
+      path: "/delivery-and-returns"
+      fullPath: "/delivery-and-returns"
+      preLoaderRoute: typeof DeliveryAndReturnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     "/faq": {
       id: "/faq"
       path: "/faq"
       fullPath: "/faq"
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/health-disclaimer": {
+      id: "/health-disclaimer"
+      path: "/health-disclaimer"
+      fullPath: "/health-disclaimer"
+      preLoaderRoute: typeof HealthDisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/privacy": {
+      id: "/privacy"
+      path: "/privacy"
+      fullPath: "/privacy"
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     "/refer": {
@@ -335,6 +408,13 @@ declare module "@tanstack/react-router" {
       path: "/styleguide"
       fullPath: "/styleguide"
       preLoaderRoute: typeof StyleguideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/terms": {
+      id: "/terms"
+      path: "/terms"
+      fullPath: "/terms"
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     "/learn/": {
@@ -381,13 +461,17 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BusinessOpportunityRoute: BusinessOpportunityRoute,
   ContactRoute: ContactRoute,
+  DeliveryAndReturnsRoute: DeliveryAndReturnsRoute,
   FaqRoute: FaqRoute,
+  HealthDisclaimerRoute: HealthDisclaimerRoute,
+  PrivacyRoute: PrivacyRoute,
   ReferRoute: ReferRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SeminarsRoute: SeminarsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StoriesRoute: StoriesRoute,
   StyleguideRoute: StyleguideRoute,
+  TermsRoute: TermsRoute,
   LearnSlugRoute: LearnSlugRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ShopCategoryRoute: ShopCategoryRoute,

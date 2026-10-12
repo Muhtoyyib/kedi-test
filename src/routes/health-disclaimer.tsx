@@ -1,0 +1,29 @@
+import {createFileRoute, notFound} from "@tanstack/react-router";
+import {SiteLayout} from "@/components/layout/site/layout";
+import {LegalLayout} from "@/features/legal/legal-layout";
+import {getLegalPage} from "@/lib/content/legal";
+import {buildMeta} from "@/lib/seo/meta";
+import {getPageTitle} from "@/lib/site-config";
+
+const SLUG = "health-disclaimer";
+
+export const Route = createFileRoute("/health-disclaimer")({
+  head: async () => {
+    const {getLegalPage: getPage} = await import("@/lib/content/legal");
+    const page = getPage(SLUG);
+    return buildMeta({
+      title: getPageTitle(page?.title),
+      description: page?.description ?? "",
+      path: "/health-disclaimer",
+    });
+  },
+  component: function LegalPage() {
+    const page = getLegalPage(SLUG);
+    if (!page) throw notFound();
+    return (
+      <SiteLayout>
+        <LegalLayout page={page} />
+      </SiteLayout>
+    );
+  },
+});
